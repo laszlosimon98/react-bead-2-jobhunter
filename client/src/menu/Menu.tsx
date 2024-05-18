@@ -1,5 +1,5 @@
 import { ReactElement, useState } from "react";
-import Logout from "./Logout";
+import Logout from "./LoggedOut";
 import Employee from "./Employee";
 import Company from "./Company";
 import { Link } from "react-router-dom";

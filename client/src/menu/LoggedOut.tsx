@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 
-const Logout = (): ReactElement => {
+const LoggedOut = (): ReactElement => {
   const items = [
     {
       title: "Bejelentkezés",
@@ -27,4 +27,4 @@ const Logout = (): ReactElement => {
   );
 };
 
-export default Logout;
+export default LoggedOut;
