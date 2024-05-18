@@ -3,15 +3,21 @@ import Layout from "./layout/Layout";
 import Home from "./home/Home";
 import Register from "./auth/Register";
 import Login from "./auth/Login";
+import JobDetail from "./jobs/JobDetail";
 
 function App() {
   return (
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route index element={<Home />} />
+
+          <Route path="jobs">
+            <Route path=":jobId" element={<JobDetail />} />
+          </Route>
+
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </Layout>

@@ -1,11 +1,13 @@
 import { ReactElement } from "react";
 import Job from "./Job";
-const tempData = [
+
+export const tempData = [
   {
     id: 1,
     company: "Dunder Mifflin",
     position: "Front-end developer",
-    description: "Lorem ipsum...",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut enim ante. Nulla et est orci. Sed vehicula libero arcu, a tempus est euismod sed. Nullam accumsan consectetur interdum. Etiam porta efficitur tellus, ut eleifend magna vulputate id. Pellentesque ac mi eu velit ornare tincidunt eu et velit. Mauris hendrerit pulvinar tellus semper maximus.",
     salaryFrom: 300000,
     salaryTo: 400000,
     type: "full-time",
