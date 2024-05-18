@@ -1,25 +1,6 @@
 import { ReactElement } from "react";
-import HomeOffice from "./HomeOffice";
 import SearchBar from "./SearchBar";
-
-const tempData = {
-  id: 1,
-  company: "Dunder Mifflin",
-  position: "Front-end developer",
-  description: "Lorem ipsum...",
-  salaryFrom: 300000,
-  salaryTo: 400000,
-  type: "full-time",
-  city: "Budapest",
-  homeOffice: 0,
-  userId: 1,
-  createdBy: {
-    id: 1,
-    email: "user1@jobhunter.hu",
-    fullname: "Jake Peralta",
-    role: "company",
-  },
-};
+import JobLists from "../jobs/JobLists";
 
 const Home = (): ReactElement => {
   return (
@@ -28,11 +9,10 @@ const Home = (): ReactElement => {
         <h2 className="font-bold text-3xl px-7 text-sky-600">Főoldal</h2>
       </div>
 
-      <div className="flex justify-center items-center mt-16">
+      <div className="w-full flex justify-center items-center mt-16 flex-col">
         <SearchBar title="Böngéssz az állások között:" />
+        <JobLists />
       </div>
-
-      {/* <HomeOffice /> */}
     </>
   );
 };
