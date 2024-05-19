@@ -4,6 +4,7 @@ import Home from "./home/Home";
 import Register from "./auth/Register";
 import Login from "./auth/Login";
 import JobDetail from "./jobs/JobDetail";
+import Profile from "./profile/Profile";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
           <Route path="jobs">
             <Route path=":jobId" element={<JobDetail />} />
           </Route>
+
+          <Route path="profile" element={<Profile />} />
 
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />

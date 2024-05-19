@@ -1,14 +1,15 @@
 import { ReactElement } from "react";
+import { Link } from "react-router-dom";
 
 const Employee = (): ReactElement => {
   const items = [
     {
       title: "Álláshirdetések",
-      path: "",
+      path: "/",
     },
     {
       title: "Profilom",
-      path: "",
+      path: "profile",
     },
     {
       title: "Kijelentkezés",
@@ -23,7 +24,7 @@ const Employee = (): ReactElement => {
           key={idx}
           className="text-stone-200 text-xl font-bold cursor-pointer hover:text-stone-300 focus:text-stone-300"
         >
-          {item.title}
+          <Link to={item.path}>{item.title}</Link>
         </li>
       ))}
     </>

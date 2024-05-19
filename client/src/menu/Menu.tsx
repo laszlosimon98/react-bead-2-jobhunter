@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 type userStatus = "logout" | "employee" | "company";
 
 const Menu = (): ReactElement => {
-  const [status, setStatus] = useState<userStatus>("logout");
+  const [status, setStatus] = useState<userStatus>("company");
 
   return (
     <header className="bg-sky-700 flex items-center justify-between px-5 h-16 w-full">

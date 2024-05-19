@@ -6,8 +6,7 @@ export const tempData = [
     id: 1,
     company: "Dunder Mifflin",
     position: "Front-end developer",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut enim ante. Nulla et est orci. Sed vehicula libero arcu, a tempus est euismod sed. Nullam accumsan consectetur interdum. Etiam porta efficitur tellus, ut eleifend magna vulputate id. Pellentesque ac mi eu velit ornare tincidunt eu et velit. Mauris hendrerit pulvinar tellus semper maximus.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     salaryFrom: 300000,
     salaryTo: 400000,
     type: "full-time",
