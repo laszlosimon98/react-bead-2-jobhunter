@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
 import { useParams } from "react-router-dom";
-import { tempData } from "./JobLists";
 import HomeOffice from "./HomeOffice";
 import { formatNumber, translateType } from "../utils/util";
 import JobTable from "./JobTable";
+import { tempData } from "../temp/exampledata";
 
 const JobDetail = (): ReactElement => {
   const { jobId } = useParams();

@@ -1,23 +1,15 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 
-const Company = (): ReactElement => {
+const LoggedOutMenu = (): ReactElement => {
   const items = [
     {
-      title: "Álláshirdetések",
-      path: "/",
+      title: "Bejelentkezés",
+      path: "/login",
     },
     {
-      title: "Profilom",
-      path: "profile",
-    },
-    {
-      title: "Álláshirdetés hozzáadása",
-      path: "",
-    },
-    {
-      title: "Kijelentkezés",
-      path: "",
+      title: "Regisztráció",
+      path: "/register",
     },
   ];
 
@@ -35,4 +27,4 @@ const Company = (): ReactElement => {
   );
 };
 
-export default Company;
+export default LoggedOutMenu;

@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
-import { tempData } from "../jobs/JobLists";
 import { formatNumber, translateType } from "../utils/util";
+import { tempData } from "../temp/exampledata";
 
 const CompanyProfile = (): ReactElement => {
   return (
@@ -22,13 +22,13 @@ const CompanyProfile = (): ReactElement => {
             </div>
 
             <div className="flex justify-between items-center w-[22rem]">
-              <button className="border bg-emerald-500 cursor-pointer py-2 px-4 rounded-lg hover:bg-emerald-600 hover:py-3 hover:px-5 transition-all text-white shadow-md">
+              <button className="border bg-emerald-500 cursor-pointer py-2 px-4 rounded-lg hover:bg-emerald-600 hover:py-[0.7rem] hover:px-[1.2rem] transition-all text-white shadow-md">
                 Szerkesztés
               </button>
-              <button className="border bg-sky-500 cursor-pointer py-2 px-4 rounded-lg hover:bg-sky-600 hover:py-3 hover:px-5  transition-all text-white shadow-md">
+              <button className="border bg-sky-500 cursor-pointer py-2 px-4 rounded-lg hover:bg-sky-600 hover:py-[0.7rem] hover:px-[1.2rem]  transition-all text-white shadow-md">
                 Megtekintés
               </button>
-              <button className="border bg-red-500 cursor-pointer py-2 px-4 rounded-lg hover:bg-red-600 hover:py-3 hover:px-5  transition-all text-white shadow-md">
+              <button className="border bg-red-500 cursor-pointer py-2 px-4 rounded-lg hover:bg-red-600 hover:py-[0.7rem] hover:px-[1.2rem]  transition-all text-white shadow-md">
                 Törlés
               </button>
             </div>

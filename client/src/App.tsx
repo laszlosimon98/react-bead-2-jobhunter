@@ -8,23 +8,25 @@ import Profile from "./profile/Profile";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route index element={<Home />} />
+    <div className="bg-stone-50 h-screen">
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route index element={<Home />} />
 
-          <Route path="jobs">
-            <Route path=":jobId" element={<JobDetail />} />
-          </Route>
+            <Route path="jobs">
+              <Route path=":jobId" element={<JobDetail />} />
+            </Route>
 
-          <Route path="profile" element={<Profile />} />
+            <Route path="profile" element={<Profile />} />
 
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
+            <Route path="register" element={<Register />} />
+            <Route path="login" element={<Login />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </div>
   );
 }
 

@@ -1,14 +1,11 @@
-import { ReactElement, useState } from "react";
-import Logout from "./LoggedOut";
-import Employee from "./Employee";
-import Company from "./Company";
+import { ReactElement } from "react";
 import { Link } from "react-router-dom";
-
-type userStatus = "logout" | "employee" | "company";
+import { tempUser } from "../temp/exampledata";
+import LoggedOutMenu from "./LoggedOutMenu";
+import JobSeekerMenu from "./JobseekerMenu";
+import CompanyMenu from "./CompanyMenu";
 
 const Menu = (): ReactElement => {
-  const [status, setStatus] = useState<userStatus>("company");
-
   return (
     <header className="bg-sky-700 flex items-center justify-between px-5 h-16 w-full">
       <h1 className="font-bold underline text-3xl text-stone-200 shadow-lg">
@@ -17,12 +14,12 @@ const Menu = (): ReactElement => {
 
       <nav>
         <ul className="flex justify-end items-center gap-6 pr-2">
-          {status === "logout" ? (
-            <Logout />
-          ) : status === "employee" ? (
-            <Employee />
+          {tempUser.role === "logout" ? (
+            <LoggedOutMenu />
+          ) : tempUser.role === "jobseeker" ? (
+            <JobSeekerMenu />
           ) : (
-            <Company />
+            <CompanyMenu />
           )}
         </ul>
       </nav>

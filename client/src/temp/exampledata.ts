@@ -1,0 +1,63 @@
+export const tempData = [
+  {
+    id: 1,
+    company: "Dunder Mifflin",
+    position: "Front-end developer",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    salaryFrom: 300000,
+    salaryTo: 400000,
+    type: "full-time",
+    city: "Budapest",
+    homeOffice: 0,
+    userId: 1,
+    createdBy: {
+      id: 1,
+      email: "user1@jobhunter.hu",
+      fullname: "Jake Peralta",
+      role: "company",
+    },
+  },
+  {
+    id: 2,
+    company: "Regional Paradigm Technician",
+    position: "Front-end developer",
+    description: "Lorem ipsum...",
+    salaryFrom: 500000,
+    salaryTo: 1000000,
+    type: "internship",
+    city: "Budapest",
+    homeOffice: 1,
+    userId: 1,
+    createdBy: {
+      id: 1,
+      email: "user1@jobhunter.hu",
+      fullname: "Jake Peralta",
+      role: "company",
+    },
+  },
+  {
+    id: 3,
+    company: "Dunder Mifflin",
+    position: "Front-end developer",
+    description: "Lorem ipsum...",
+    salaryFrom: 300000,
+    salaryTo: 1400000,
+    type: "part-time",
+    city: "Budapest",
+    homeOffice: 1,
+    userId: 1,
+    createdBy: {
+      id: 1,
+      email: "user1@jobhunter.hu",
+      fullname: "Jake Peralta",
+      role: "company",
+    },
+  },
+];
+
+export const tempUser = {
+  id: 1,
+  email: "user1@jobhunter.hu",
+  fullname: "Jake Peralta",
+  role: "jobseeker",
+};

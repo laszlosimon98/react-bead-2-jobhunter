@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 
-const Employee = (): ReactElement => {
+const JobSeekerMenu = (): ReactElement => {
   const items = [
     {
       title: "Álláshirdetések",
@@ -31,4 +31,4 @@ const Employee = (): ReactElement => {
   );
 };
 
-export default Employee;
+export default JobSeekerMenu;
