@@ -14,7 +14,7 @@ const CreateAdvertisement = (): ReactElement => {
     <>
       <PageTitle>Hirdetés Létrehozása</PageTitle>
 
-      <div className="pt-44">
+      <div className="pt-10">
         <AdvertisementForm />
       </div>
 

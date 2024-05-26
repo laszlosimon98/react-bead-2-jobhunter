@@ -10,14 +10,16 @@ const Menu = (): ReactElement => {
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
 
   return (
-    <header className="bg-sky-700 flex items-center justify-between px-5 h-16 w-full fixed top-0">
+    <header className="bg-sky-700 flex items-center justify-between px-5 h-16 w-full">
       <h1 className="font-bold underline text-3xl text-stone-200 shadow-lg">
         <Link to="/">Jobhunter</Link>
       </h1>
 
-      <div className="h-7 flex items-center cursor-pointer md:hidden relative">
-        <DropdownMenu />
-        <div className="w-10 h-10 bg-red-500 absolute top-5"></div>
+      <div
+        className="h-7 flex items-center cursor-pointer md:hidden relative"
+        onClick={() => setIsDropdownVisible(!isDropdownVisible)}
+      >
+        <DropdownMenu isDropdownVisible={isDropdownVisible} />
       </div>
 
       <nav className="hidden md:block">

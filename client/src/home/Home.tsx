@@ -8,7 +8,7 @@ const Home = (): ReactElement => {
     <>
       <PageTitle>Álláshirdetések</PageTitle>
 
-      <div className="w-full flex justify-center items-center flex-col pt-44 ">
+      <div className="w-full flex justify-center items-center flex-col pt-10 ">
         <SearchBar title="Böngéssz az állások között:" />
         <JobLists />
       </div>

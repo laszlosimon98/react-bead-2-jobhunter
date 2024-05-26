@@ -30,7 +30,7 @@ const JobDetail = (): ReactElement => {
         </div>
       </div>
 
-      <div className="w-3/4 mx-auto pt-44">
+      <div className="w-3/4 mx-auto pt-24">
         <div className="flex justify-between items-center p-3">
           <div>
             <h3 className="font-semibold text-lg">Cég részletei</h3>

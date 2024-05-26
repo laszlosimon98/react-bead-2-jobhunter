@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const CompanyProfile = (): ReactElement => {
   return (
-    <div className="pt-44 mx-10">
+    <div className="pt-10 mx-10">
       <div className="flex justify-around items-center mb-10">
         <h3 className="font-semibold text-2xl">A te hirdetéseid:</h3>
         <button className="border bg-sky-500 cursor-pointer w-52 h-12 rounded-lg hover:bg-sky-600 hover:w-[13.5rem] hover:h-14 text-lg transition-all text-white shadow-md">

@@ -4,7 +4,7 @@ import JobseekerExperience from "./JobseekerExperience";
 
 const JobseekerProfile = (): ReactElement => {
   return (
-    <div className="pt-44">
+    <div className="pt-10">
       <div className="h-fit w-[80rem] shadow-lg mx-auto rounded-lg">
         <div className="flex justify-between items-center py-2 px-4 shadow-lg rounded-lg">
           <div>

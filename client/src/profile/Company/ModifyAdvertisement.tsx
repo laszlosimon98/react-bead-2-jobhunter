@@ -14,7 +14,7 @@ const ModifyAdvertisement = (): ReactElement => {
     <>
       <PageTitle>xy Kft. Szerkesztése</PageTitle>
 
-      <div className="pt-44">
+      <div className="pt-10">
         <AdvertisementForm />
       </div>
 
