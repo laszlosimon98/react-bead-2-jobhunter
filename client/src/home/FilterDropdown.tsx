@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
-import Input from "../formComponents/Input";
-import Option from "../formComponents/Option";
+import Input from "../components/Input";
+import Option from "../components/Option";
 
 const FilterDropdown = (): ReactElement => {
   return (

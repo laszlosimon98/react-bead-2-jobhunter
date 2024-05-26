@@ -2,13 +2,12 @@ import { ReactElement } from "react";
 import CompanyProfile from "./Company/CompanyProfile";
 import JobseekerProfile from "./Jobseeker/JobseekerProfile";
 import { tempUser } from "../temp/exampledata";
+import PageTitle from "../home/PageTitle";
 
 const Profile = (): ReactElement => {
   return (
     <>
-      <div className="w-full shadow-lg h-16 flex justify-center items-center">
-        <h2 className="font-bold text-3xl px-7 text-sky-600">Profilom</h2>
-      </div>
+      <PageTitle>Profilom</PageTitle>
       {tempUser.role === "company" ? <CompanyProfile /> : <JobseekerProfile />}
     </>
   );

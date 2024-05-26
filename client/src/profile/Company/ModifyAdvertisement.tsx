@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import AdvertisementForm from "./AdvertisementForm";
 import { useNavigate } from "react-router-dom";
+import PageTitle from "../../home/PageTitle";
 
 const ModifyAdvertisement = (): ReactElement => {
   const navigate = useNavigate();
@@ -11,19 +12,25 @@ const ModifyAdvertisement = (): ReactElement => {
 
   return (
     <>
-      <div className="w-full shadow-lg h-16 flex justify-center items-center">
-        <h2 className="font-bold text-3xl px-7 text-sky-600">
-          xy Kft. Szerkesztése
-        </h2>
+      <PageTitle>xy Kft. Szerkesztése</PageTitle>
+
+      <div className="pt-44">
+        <AdvertisementForm />
       </div>
 
-      <AdvertisementForm />
-      <div className="flex justify-center items-center mt-10">
+      <div className="flex justify-evenly items-center mt-10">
         <button
           onClick={handleSave}
-          className="border bg-sky-500 cursor-pointer py-3 px-5 rounded-lg hover:bg-sky-600 hover:py-4 hover:px-6 text-lg transition-all text-white shadow-md"
+          className="border bg-sky-500 cursor-pointer w-52 h-12 rounded-lg hover:bg-sky-600 hover:w-[13.5rem] hover:h-14 text-lg transition-all text-white shadow-md"
         >
-          Változtatások Mentése
+          Hirdetés módosítása
+        </button>
+
+        <button
+          onClick={() => navigate("/profile")}
+          className="border bg-red-500 cursor-pointer w-24 h-12 rounded-lg hover:bg-red-600 hover:w-[6.5rem] hover:h-14 text-lg transition-all text-white shadow-md"
+        >
+          Mégsem
         </button>
       </div>
     </>

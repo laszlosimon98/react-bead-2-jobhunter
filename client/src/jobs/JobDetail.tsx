@@ -11,7 +11,7 @@ const JobDetail = (): ReactElement => {
 
   return (
     <>
-      <div className="w-full shadow-lg h-16 flex items-center justify-between">
+      <div className="w-full shadow-lg h-16 flex items-center justify-between fixed top-16">
         <div className="flex items-center">
           <h2 className="font-bold text-3xl px-7 text-sky-600">
             {job?.company}
@@ -30,13 +30,13 @@ const JobDetail = (): ReactElement => {
         </div>
       </div>
 
-      <div className="w-3/4 mx-auto mt-12">
+      <div className="w-3/4 mx-auto pt-44">
         <div className="flex justify-between items-center p-3">
           <div>
             <h3 className="font-semibold text-lg">Cég részletei</h3>
             <p className="opacity-70">Megtetszett a lehetőség? Jelentkezz!</p>
           </div>
-          <button className="bg-sky-600 w-32 h-10 text-xl rounded-lg text-white cursor-pointer hover:bg-sky-500 ">
+          <button className="bg-sky-600 w-32 h-12 text-xl rounded-lg text-white cursor-pointer hover:bg-sky-500 hover:w-[8.5rem] hover:h-14 transition-all ">
             Jelentkezés
           </button>
         </div>

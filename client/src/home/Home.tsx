@@ -1,17 +1,14 @@
 import { ReactElement } from "react";
-import SearchBar from "../formComponents/SearchBar";
+import SearchBar from "../components/SearchBar";
 import JobLists from "../jobs/JobLists";
+import PageTitle from "./PageTitle";
 
 const Home = (): ReactElement => {
   return (
     <>
-      <div className="w-full shadow-lg h-16 flex justify-center items-center">
-        <h2 className="font-bold text-3xl px-7 text-sky-600">
-          Álláshirdetések
-        </h2>
-      </div>
+      <PageTitle>Álláshirdetések</PageTitle>
 
-      <div className="w-full flex justify-center items-center mt-16 flex-col">
+      <div className="w-full flex justify-center items-center flex-col pt-44 ">
         <SearchBar title="Böngéssz az állások között:" />
         <JobLists />
       </div>

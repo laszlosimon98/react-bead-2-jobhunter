@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 
 const CompanyProfile = (): ReactElement => {
   return (
-    <div className="my-5 mx-10">
-      <h3 className="font-semibold text-2xl mb-10">A te hirdetéseid:</h3>
+    <div className="pt-44 mx-10">
+      <div className="flex justify-around items-center mb-10">
+        <h3 className="font-semibold text-2xl">A te hirdetéseid:</h3>
+        <button className="border bg-sky-500 cursor-pointer w-52 h-12 rounded-lg hover:bg-sky-600 hover:w-[13.5rem] hover:h-14 text-lg transition-all text-white shadow-md">
+          <Link to="/create">Hirdetés hozzáadása</Link>
+        </button>
+      </div>
       <div className="ml-5 flex flex-col gap-5 w-full">
         {tempData.map((data) => (
-          <div className="flex justify-around items-center my-5">
+          <div key={data.id} className="flex justify-around items-center my-5">
             <div key={data.id}>
               <h4 className="font-semibold text-xl">{data.position}</h4>
               <div className="flex w-[25rem] gap-6">
@@ -23,23 +28,18 @@ const CompanyProfile = (): ReactElement => {
             </div>
 
             <div className="flex justify-between items-center w-[22rem]">
-              <button className="border bg-emerald-500 cursor-pointer py-2 px-4 rounded-lg hover:bg-emerald-600 hover:py-[0.7rem] hover:px-[1.2rem] transition-all text-white shadow-md">
+              <button className="border bg-emerald-500 cursor-pointer w-28 h-12 rounded-lg hover:bg-emerald-600 hover:w-[7.5rem] hover:h-14 transition-all text-white shadow-md">
                 <Link to={`/modify/${data.id}`}>Szerkesztés</Link>
               </button>
-              <button className="border bg-sky-500 cursor-pointer py-2 px-4 rounded-lg hover:bg-sky-600 hover:py-[0.7rem] hover:px-[1.2rem]  transition-all text-white shadow-md">
+              <button className="border bg-sky-500 cursor-pointer w-28 h-12 rounded-lg hover:bg-sky-600 hover:w-[7.5rem] hover:h-14  transition-all text-white shadow-md">
                 Megtekintés
               </button>
-              <button className="border bg-red-500 cursor-pointer py-2 px-4 rounded-lg hover:bg-red-600 hover:py-[0.7rem] hover:px-[1.2rem]  transition-all text-white shadow-md">
+              <button className="border bg-red-500 cursor-pointer w-28 h-12 rounded-lg hover:bg-red-600 hover:w-[7.5rem] hover:h-14  transition-all text-white shadow-md">
                 Törlés
               </button>
             </div>
           </div>
         ))}
-      </div>
-      <div className="flex justify-center items-center mt-10">
-        <button className="border bg-sky-500 cursor-pointer py-3 px-5 rounded-lg hover:bg-sky-600 hover:py-4 hover:px-6 text-lg transition-all text-white shadow-md">
-          <Link to="/create">Hirdetés hozzáadása</Link>
-        </button>
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
 import { ReactElement } from "react";
-import Input from "../../formComponents/Input";
-import Option from "../../formComponents/Option";
-import TextArea from "../../formComponents/TextArea";
+import Input from "../../components/Input";
+import Option from "../../components/Option";
+import TextArea from "../../components/TextArea";
 
 const AdvertisementForm = (): ReactElement => {
   return (
-    <div className="h-fit w-[60rem] shadow-lg mx-auto mt-20 rounded-lg p-5">
+    <div className="h-fit w-[60rem] shadow-lg mx-auto  rounded-lg p-5">
       <form>
         <div className="flex justify-around">
           <div className="flex flex-col gap-5">

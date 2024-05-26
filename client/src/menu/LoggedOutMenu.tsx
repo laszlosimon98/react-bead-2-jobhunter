@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
+import MenuItem from "./MenuItem";
 
 const LoggedOutMenu = (): ReactElement => {
   const items = [
@@ -16,12 +17,9 @@ const LoggedOutMenu = (): ReactElement => {
   return (
     <>
       {items.map((item, idx) => (
-        <li
-          key={idx}
-          className="text-stone-200 text-xl font-bold cursor-pointer hover:text-stone-300 focus:text-stone-300 hover:text-2xl transition-all"
-        >
+        <MenuItem key={idx}>
           <Link to={item.path}>{item.title}</Link>
-        </li>
+        </MenuItem>
       ))}
     </>
   );
