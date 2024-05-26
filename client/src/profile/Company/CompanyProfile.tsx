@@ -24,7 +24,7 @@ const CompanyProfile = (): ReactElement => {
 
             <div className="flex justify-between items-center w-[22rem]">
               <button className="border bg-emerald-500 cursor-pointer py-2 px-4 rounded-lg hover:bg-emerald-600 hover:py-[0.7rem] hover:px-[1.2rem] transition-all text-white shadow-md">
-                Szerkesztés
+                <Link to={`/modify/${data.id}`}>Szerkesztés</Link>
               </button>
               <button className="border bg-sky-500 cursor-pointer py-2 px-4 rounded-lg hover:bg-sky-600 hover:py-[0.7rem] hover:px-[1.2rem]  transition-all text-white shadow-md">
                 Megtekintés

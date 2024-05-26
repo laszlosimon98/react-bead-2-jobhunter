@@ -6,6 +6,7 @@ import Login from "./auth/Login";
 import JobDetail from "./jobs/JobDetail";
 import Profile from "./profile/Profile";
 import CreateAdvertisement from "./profile/Company/CreateAdvertisement";
+import ModifyAdvertisement from "./profile/Company/ModifyAdvertisement";
 
 function App() {
   return (
@@ -22,6 +23,13 @@ function App() {
             <Route path="profile" element={<Profile />} />
 
             <Route path="create" element={<CreateAdvertisement />} />
+
+            <Route path="modify">
+              <Route
+                path=":advertisementId"
+                element={<ModifyAdvertisement />}
+              />
+            </Route>
 
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />
