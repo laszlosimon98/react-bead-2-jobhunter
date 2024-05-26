@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
-import CompanyProfile from "./CompanyProfile";
-import JobseekerProfile from "./JobseekerProfile";
+import CompanyProfile from "./Company/CompanyProfile";
+import JobseekerProfile from "./Jobseeker/JobseekerProfile";
 import { tempUser } from "../temp/exampledata";
 
 const Profile = (): ReactElement => {

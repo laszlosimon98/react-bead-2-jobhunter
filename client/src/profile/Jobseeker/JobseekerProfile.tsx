@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
-import JobseekerTable from "./Jobseeker/JobseekerTable";
-import JobseekerExperience from "./Jobseeker/JobseekerExperience";
+import JobseekerTable from "./JobseekerTable";
+import JobseekerExperience from "./JobseekerExperience";
 
 const JobseekerProfile = (): ReactElement => {
   return (

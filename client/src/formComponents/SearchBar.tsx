@@ -1,5 +1,5 @@
 import { ReactElement, useState } from "react";
-import FilterDropdown from "./FilterDropdown";
+import FilterDropdown from "../home/FilterDropdown";
 
 type SearchBarType = {
   title: string;

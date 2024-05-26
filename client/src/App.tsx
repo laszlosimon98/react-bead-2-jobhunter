@@ -5,6 +5,7 @@ import Register from "./auth/Register";
 import Login from "./auth/Login";
 import JobDetail from "./jobs/JobDetail";
 import Profile from "./profile/Profile";
+import CreateAdvertisement from "./profile/Company/CreateAdvertisement";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
             </Route>
 
             <Route path="profile" element={<Profile />} />
+
+            <Route path="create" element={<CreateAdvertisement />} />
 
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />

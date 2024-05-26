@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
-import { formatNumber, translateType } from "../utils/util";
-import { tempData } from "../temp/exampledata";
+import { formatNumber, translateType } from "../../utils/util";
+import { tempData } from "../../temp/exampledata";
+import { Link } from "react-router-dom";
 
 const CompanyProfile = (): ReactElement => {
   return (
@@ -37,7 +38,7 @@ const CompanyProfile = (): ReactElement => {
       </div>
       <div className="flex justify-center items-center mt-10">
         <button className="border bg-sky-500 cursor-pointer py-3 px-5 rounded-lg hover:bg-sky-600 hover:py-4 hover:px-6 text-lg transition-all text-white shadow-md">
-          Hirdetés hozzáadása
+          <Link to="/create">Hirdetés hozzáadása</Link>
         </button>
       </div>
     </div>

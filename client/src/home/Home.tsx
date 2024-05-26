@@ -1,12 +1,14 @@
 import { ReactElement } from "react";
-import SearchBar from "./SearchBar";
+import SearchBar from "../formComponents/SearchBar";
 import JobLists from "../jobs/JobLists";
 
 const Home = (): ReactElement => {
   return (
     <>
       <div className="w-full shadow-lg h-16 flex justify-center items-center">
-        <h2 className="font-bold text-3xl px-7 text-sky-600">Főoldal</h2>
+        <h2 className="font-bold text-3xl px-7 text-sky-600">
+          Álláshirdetések
+        </h2>
       </div>
 
       <div className="w-full flex justify-center items-center mt-16 flex-col">

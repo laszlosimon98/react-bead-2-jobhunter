@@ -3,7 +3,7 @@ import { formatNumber, translateType } from "../utils/util";
 
 const JobTable = ({ job }): ReactElement => {
   return (
-    <table className="w-full mx-auto mt-6 table-auto">
+    <table className="w-full mx-auto mt-6 table-auto shadow-lg">
       <tbody>
         <tr className="bg-sky-50">
           <td className="px-10 py-6 w-[15rem] font-semibold opacity-80">Név</td>

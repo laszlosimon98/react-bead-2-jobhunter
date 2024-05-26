@@ -2,9 +2,10 @@ import { ReactElement } from "react";
 
 type InputProps = {
   title: string;
+  type: string;
 };
 
-const Input = ({ title }: InputProps): ReactElement => {
+const Input = ({ title, type }: InputProps): ReactElement => {
   return (
     <div className="flex flex-col">
       <label htmlFor={title} className="italic text-lg mb-1">
@@ -12,8 +13,12 @@ const Input = ({ title }: InputProps): ReactElement => {
       </label>
       <input
         id={title}
-        type="text"
-        className="border rounded-lg w-[18rem] h-[2rem] outline-none p-2"
+        type={type}
+        className={`border rounded-lg ${
+          type === "text" ? "w-[24rem]" : "w-[16rem]"
+        } h-9 outline-none p-2`}
+        min={100000}
+        max={2000000}
       />
     </div>
   );
