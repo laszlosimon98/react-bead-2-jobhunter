@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
 import Home from "./home/Home";
 import Register from "./auth/Register";
@@ -10,33 +10,28 @@ import ModifyAdvertisement from "./profile/Company/ModifyAdvertisement";
 
 function App() {
   return (
-    <div className="bg-stone-50 h-screen">
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route index element={<Home />} />
+    <div className="h-screen">
+      <Layout>
+        <Routes>
+          <Route index element={<Home />} />
 
-            <Route path="jobs">
-              <Route path=":jobId" element={<JobDetail />} />
-            </Route>
+          <Route path="jobs">
+            <Route path=":jobId" element={<JobDetail />} />
+          </Route>
 
-            <Route path="profile" element={<Profile />} />
+          <Route path="profile" element={<Profile />} />
 
-            <Route path="create" element={<CreateAdvertisement />} />
+          <Route path="create" element={<CreateAdvertisement />} />
 
-            <Route path="modify">
-              <Route
-                path=":advertisementId"
-                element={<ModifyAdvertisement />}
-              />
-            </Route>
+          <Route path="modify">
+            <Route path=":advertisementId" element={<ModifyAdvertisement />} />
+          </Route>
 
-            <Route path="register" element={<Register />} />
-            <Route path="login" element={<Login />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </Layout>
     </div>
   );
 }

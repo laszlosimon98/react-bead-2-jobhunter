@@ -6,8 +6,8 @@ import { formatNumber, translateType } from "../utils/util";
 const Job = ({ data }): ReactElement => {
   return (
     <Link to={`jobs/${data.id}`}>
-      <div className="flex flex-col sm:flex-row justify-between items-center p-2 shadow-md my-2 hover:bg-stone-200 cursor-pointer rounded-lg hover:p-3 hover:mb-1 hover:-mx-2 transition-all">
-        <div className="">
+      <div className="flex flex-col sm:flex-row justify-between items-center p-2 shadow-md my-2 cursor-pointer rounded-lg hover:p-3 hover:mb-1 hover:-mx-2 hover:bg-stone-200 transition-all">
+        <div className="ml-2">
           <p className="font-semibold">{data.company}</p>
           <p className="text-sm opacity-70 text-center sm:text-left">
             {data.city}
@@ -21,7 +21,7 @@ const Job = ({ data }): ReactElement => {
         >
           {data.homeOffice ? <HomeOffice /> : ""}
 
-          <div className="flex flex-col justify-end items-end">
+          <div className="flex flex-col justify-end items-end mr-2">
             <p className="font-semibold">
               {formatNumber(data.salaryFrom)}-{formatNumber(data.salaryTo)} Ft
             </p>

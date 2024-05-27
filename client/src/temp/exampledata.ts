@@ -59,5 +59,5 @@ export const tempUser = {
   id: 1,
   email: "user1@jobhunter.hu",
   fullname: "Jake Peralta",
-  role: "logout",
+  role: "company",
 };

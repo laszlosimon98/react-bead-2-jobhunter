@@ -1,13 +1,15 @@
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 import { tempUser } from "../temp/exampledata";
 import LoggedOutMenu from "./LoggedOutMenu";
 import JobSeekerMenu from "./JobseekerMenu";
 import CompanyMenu from "./CompanyMenu";
 import DropdownMenu from "./DropdownMenu";
+import { useAppDispatch } from "../hooks/reduxHooks";
+import { dropDownToggle } from "../services/dropdownSlice";
 
 const Menu = (): ReactElement => {
-  const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
   return (
     <header className="bg-sky-700 flex items-center justify-between px-5 h-16 w-full">
@@ -17,9 +19,9 @@ const Menu = (): ReactElement => {
 
       <div
         className="h-7 flex items-center cursor-pointer md:hidden relative"
-        onClick={() => setIsDropdownVisible(!isDropdownVisible)}
+        onClick={() => dispatch(dropDownToggle())}
       >
-        <DropdownMenu isDropdownVisible={isDropdownVisible} />
+        <DropdownMenu />
       </div>
 
       <nav className="hidden md:block">

@@ -3,8 +3,13 @@ import { tempUser } from "../temp/exampledata";
 import LoggedOutMenu from "./LoggedOutMenu";
 import JobSeekerMenu from "./JobseekerMenu";
 import CompanyMenu from "./CompanyMenu";
+import { useAppSelector } from "../hooks/reduxHooks";
 
-const DropdownMenu = ({ isDropdownVisible }): ReactElement => {
+const DropdownMenu = (): ReactElement => {
+  const isDropdownVisible = useAppSelector(
+    (state) => state.dropdown.isDropdownVisible
+  );
+
   return (
     <>
       <div className="w-8 h-[0.375rem] bg-stone-200 rounded-lg relative before:w-8 before:h-[0.375rem] before:bg-stone-200 before:rounded-lg before:absolute before:-top-[0.55rem] after:w-8 after:h-[0.375rem] after:bg-stone-200 after:rounded-lg after:absolute after:top-[0.55rem] z-10"></div>
