@@ -1,12 +1,12 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
-import { tempUser } from "../temp/exampledata";
+import { tempUser } from "../../temp/exampledata";
 import LoggedOutMenu from "./LoggedOutMenu";
 import JobSeekerMenu from "./JobseekerMenu";
 import CompanyMenu from "./CompanyMenu";
 import DropdownMenu from "./DropdownMenu";
-import { useAppDispatch } from "../hooks/reduxHooks";
-import { dropDownToggle } from "../services/dropdownSlice";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { dropDownToggle } from "../../services/dropdownSlice";
 
 const Menu = (): ReactElement => {
   const dispatch = useAppDispatch();

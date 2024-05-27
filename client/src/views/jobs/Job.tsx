@@ -1,11 +1,15 @@
 import { ReactElement } from "react";
 import HomeOffice from "./HomeOffice";
 import { Link } from "react-router-dom";
-import { formatNumber, translateType } from "../utils/util";
+import { formatNumber, translateType } from "../../utils/util";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { modalOn } from "../../services/modalSlice";
 
 const Job = ({ data }): ReactElement => {
+  const dispatch = useAppDispatch();
+
   return (
-    <Link to={`jobs/${data.id}`}>
+    <Link to={`jobs/${data.id}`} onClick={() => dispatch(modalOn())}>
       <div className="flex flex-col sm:flex-row justify-between items-center p-2 shadow-md my-2 cursor-pointer rounded-lg hover:p-3 hover:mb-1 hover:-mx-2 hover:bg-stone-200 transition-all">
         <div className="ml-2">
           <p className="font-semibold">{data.company}</p>

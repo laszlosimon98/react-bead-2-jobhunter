@@ -13,6 +13,8 @@ export default {
         advertisement: "clamp(20rem, 85vw, 60rem)",
         text: "clamp(18rem, 85vw, 24rem)",
         number: "clamp(8rem, 85vw, 16rem)",
+        filter: "clamp(20rem, 90vw, 60rem)",
+        jobModal: "clamp(350px, 80vw, 1550px)",
       },
     },
   },

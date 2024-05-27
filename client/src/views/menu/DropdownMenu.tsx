@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
-import { tempUser } from "../temp/exampledata";
+import { tempUser } from "../../temp/exampledata";
 import LoggedOutMenu from "./LoggedOutMenu";
 import JobSeekerMenu from "./JobseekerMenu";
 import CompanyMenu from "./CompanyMenu";
-import { useAppSelector } from "../hooks/reduxHooks";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 const DropdownMenu = (): ReactElement => {
   const isDropdownVisible = useAppSelector(
@@ -12,7 +12,7 @@ const DropdownMenu = (): ReactElement => {
 
   return (
     <>
-      <div className="w-8 h-[0.375rem] bg-stone-200 rounded-lg relative before:w-8 before:h-[0.375rem] before:bg-stone-200 before:rounded-lg before:absolute before:-top-[0.55rem] after:w-8 after:h-[0.375rem] after:bg-stone-200 after:rounded-lg after:absolute after:top-[0.55rem] z-10"></div>
+      <div className="w-8 h-[0.375rem] bg-stone-200 rounded-lg relative before:w-8 before:h-[0.375rem] before:bg-stone-200 before:rounded-lg before:absolute before:-top-[0.55rem] after:w-8 after:h-[0.375rem] after:bg-stone-200 after:rounded-lg after:absolute after:top-[0.55rem]"></div>
       <div
         className={`bg-sky-700 ${
           isDropdownVisible ? `translate-y-10` : "translate-y-0"

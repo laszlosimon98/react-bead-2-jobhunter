@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
-import { formatNumber, translateType } from "../../utils/util";
-import { tempData } from "../../temp/exampledata";
+import { formatNumber, translateType } from "../../../utils/util";
+import { tempData } from "../../../temp/exampledata";
 import { Link } from "react-router-dom";
 
 const CompanyProfile = (): ReactElement => {

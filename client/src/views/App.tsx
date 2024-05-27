@@ -1,12 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
 import Home from "./home/Home";
-import Register from "./auth/Register";
-import Login from "./auth/Login";
-import JobDetail from "./jobs/JobDetail";
 import Profile from "./profile/Profile";
 import CreateAdvertisement from "./profile/Company/CreateAdvertisement";
 import ModifyAdvertisement from "./profile/Company/ModifyAdvertisement";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
 
 function App() {
   return (
@@ -16,7 +15,7 @@ function App() {
           <Route index element={<Home />} />
 
           <Route path="jobs">
-            <Route path=":jobId" element={<JobDetail />} />
+            <Route path=":jobId" element={<Home />} />
           </Route>
 
           <Route path="profile" element={<Profile />} />

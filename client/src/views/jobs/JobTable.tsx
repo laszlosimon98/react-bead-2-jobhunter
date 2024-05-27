@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { formatNumber, translateType } from "../utils/util";
+import { formatNumber, translateType } from "../../utils/util";
 
 const JobTable = ({ job }): ReactElement => {
   return (

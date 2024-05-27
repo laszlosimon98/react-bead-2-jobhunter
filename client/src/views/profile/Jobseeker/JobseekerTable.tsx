@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { tempUser } from "../../temp/exampledata";
+import { tempUser } from "../../../temp/exampledata";
 
 const JobseekerTable = (): ReactElement => {
   return (

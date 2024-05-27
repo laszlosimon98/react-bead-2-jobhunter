@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import Job from "./Job";
-import { tempData } from "../temp/exampledata";
+import { tempData } from "../../temp/exampledata";
 
 const JobLists = (): ReactElement => {
   return (
