@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 
 const Option = (): ReactElement => {
   return (
-    <div className="flex flex-col w-[24rem]">
+    <div className="flex flex-col w-text">
       <label htmlFor="options" className="mb-1">
         Foglalkoztatás típusa
       </label>

@@ -12,7 +12,7 @@ const TextArea = ({ title }: TextAreaProps): ReactElement => {
       </label>
       <textarea
         id={title}
-        className="border rounded-lg w-[24rem] h-[7.5rem] outline-none p-2 resize-none"
+        className="border rounded-lg w-text h-[7.5rem] outline-none p-2 resize-none"
       />
     </div>
   );

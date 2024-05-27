@@ -5,10 +5,12 @@ import JobseekerExperience from "./JobseekerExperience";
 const JobseekerProfile = (): ReactElement => {
   return (
     <div className="pt-10">
-      <div className="h-fit w-[80rem] shadow-lg mx-auto rounded-lg">
-        <div className="flex justify-between items-center py-2 px-4 shadow-lg rounded-lg">
+      <div className="h-fit w-table shadow-lg mx-auto rounded-lg">
+        <div className="flex flex-col justify-between items-center py-2 px-4 shadow-lg rounded-lg gap-3 sm:flex-row sm:gap-0">
           <div>
-            <h3 className="font-semibold text-xl p-1 pb-0">Személyes adatok</h3>
+            <h3 className="font-semibold text-xl p-1 pb-0 text-center sm:text-left">
+              Személyes adatok
+            </h3>
             <p className="px-1 text-sm opacity-70">
               Adataid és tapasztalataid egy helyen
             </p>

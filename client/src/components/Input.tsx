@@ -15,7 +15,7 @@ const Input = ({ title, type }: InputProps): ReactElement => {
         id={title}
         type={type}
         className={`border rounded-lg ${
-          type === "text" ? "w-[24rem]" : "w-[16rem]"
+          type === "text" ? "w-text" : "w-number"
         } h-9 outline-none p-2`}
         min={100000}
         max={2000000}

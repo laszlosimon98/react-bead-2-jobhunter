@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 const CompanyProfile = (): ReactElement => {
   return (
-    <div className="pt-10 mx-10">
-      <div className="flex justify-around items-center mb-10">
+    <div className="mt-5 mx-10">
+      <div className="flex flex-col justify-around items-center mb-5 gap-3 sm:gap-0 sm:mb-10 sm:flex-row">
         <h3 className="font-semibold text-2xl">A te hirdetéseid:</h3>
         <button className="border bg-sky-500 cursor-pointer w-52 h-12 rounded-lg hover:bg-sky-600 hover:w-[13.5rem] hover:h-14 text-lg transition-all text-white shadow-md">
           <Link to="/create">Hirdetés hozzáadása</Link>
@@ -14,10 +14,15 @@ const CompanyProfile = (): ReactElement => {
       </div>
       <div className="ml-5 flex flex-col gap-5 w-full">
         {tempData.map((data) => (
-          <div key={data.id} className="flex justify-around items-center my-5">
+          <div
+            key={data.id}
+            className="flex flex-col justify-around items-center my-5 gap-3 lg:gap-0 lg:flex-row"
+          >
             <div key={data.id}>
-              <h4 className="font-semibold text-xl">{data.position}</h4>
-              <div className="flex w-[25rem] gap-6">
+              <h4 className="font-semibold text-3xl text-center lg:text-left">
+                {data.position}
+              </h4>
+              <div className="flex w-[25rem] gap-6 text-lg">
                 <p>{translateType(data.type as string)}</p>
                 <p>{data.homeOffice ? "Home Office" : data.city}</p>
                 <p>

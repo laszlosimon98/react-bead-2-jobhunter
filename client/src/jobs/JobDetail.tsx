@@ -11,27 +11,27 @@ const JobDetail = (): ReactElement => {
 
   return (
     <>
-      <div className="w-full shadow-lg h-16 flex items-center justify-between fixed top-16">
-        <div className="flex items-center">
-          <h2 className="font-bold text-3xl px-7 text-sky-600">
+      <div className="w-full shadow-lg h-26 flex flex-col items-center justify-between gap-1 sm:h-16 sm:flex-row sm:gap-0">
+        <div className="flex items-center justify-around flex-col md:flex-row">
+          <h2 className="font-bold text-jobtitle px-7 text-sky-600">
             {job?.company}
           </h2>
           {job?.homeOffice ? <HomeOffice /> : ""}
         </div>
 
-        <div className="mr-10">
-          <p className="font-semibold">
+        <div className="mr-2 text-center sm:text-left md:mr-10">
+          <p className="font-semibold text-price">
             {formatNumber(job?.salaryFrom as number)}-
             {formatNumber(job?.salaryTo as number)} Ft
           </p>
-          <p className="text-sm opacity-70">
+          <p className="opacity-70 text-price">
             {translateType(job?.type as string)}
           </p>
         </div>
       </div>
 
-      <div className="w-3/4 mx-auto pt-24">
-        <div className="flex justify-between items-center p-3">
+      <div className="min-w-[20vw] w-[75vw] max-w-[1500px] mx-auto pt-2">
+        <div className="flex flex-col justify-center items-center gap-2 p-3 text-center sm:text-left sm:flex-row sm:justify-between sm:gap-0">
           <div>
             <h3 className="font-semibold text-lg">Cég részletei</h3>
             <p className="opacity-70">Megtetszett a lehetőség? Jelentkezz!</p>

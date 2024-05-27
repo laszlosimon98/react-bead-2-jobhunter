@@ -36,7 +36,7 @@ const Register = (): ReactElement => {
                 className="mr-2"
                 id="employee"
                 name="role"
-                checked
+                defaultChecked
               />
               Munkavállaló
             </label>
