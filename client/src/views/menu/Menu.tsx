@@ -5,7 +5,7 @@ import JobSeekerMenu from "./JobseekerMenu";
 import CompanyMenu from "./CompanyMenu";
 import DropdownMenu from "./DropdownMenu";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { dropDownToggle } from "../../services/visibilitySlice";
+import { dropDownToggle } from "../../services/utils/visibilitySlice";
 
 const Menu = (): ReactElement => {
   const dispatch = useAppDispatch();

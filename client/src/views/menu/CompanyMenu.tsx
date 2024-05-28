@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MenuItem from "./MenuItem";
 import { useAppDispatch } from "../../hooks/reduxHooks";
-import { logout } from "../../services/authSlice";
+import { logout } from "../../services/auth/authSlice";
 
 const CompanyMenu = (): ReactElement => {
   const items = [

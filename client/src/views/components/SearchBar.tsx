@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import FilterDropdown from "../home/FilterDropdown";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { filterToggle } from "../../services/visibilitySlice";
+import { filterToggle } from "../../services/utils/visibilitySlice";
 
 type SearchBarType = {
   title: string;

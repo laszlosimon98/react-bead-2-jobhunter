@@ -3,7 +3,7 @@ import PageTitle from "../home/PageTitle";
 import CompanyProfile from "./Company/CompanyProfile";
 import JobseekerProfile from "./Jobseeker/JobseekerProfile";
 import { useAppSelector } from "../../hooks/reduxHooks";
-import { userType } from "../../services/authSlice";
+import { userType } from "../../services/auth/authSlice";
 
 const Profile = (): ReactElement => {
   const user = useAppSelector((state) => state.auth.data) as userType;

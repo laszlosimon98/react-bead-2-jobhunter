@@ -1,39 +1,30 @@
-import { ChangeEvent, ReactElement, useState } from "react";
-import { useLoginUserMutation } from "../../services/authApi";
+import { ChangeEvent, ReactElement } from "react";
+import { useLoginUserMutation } from "../../services/auth/authApi";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/reduxHooks";
-import { login } from "../../services/authSlice";
-
-type FormState = {
-  email: string;
-  password: string;
-};
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { login } from "../../services/auth/authSlice";
+import { setFormEmpty, setLoginForm } from "../../services/form/formSlice";
 
 const Login = (): ReactElement => {
-  const [form, setForm] = useState<FormState>({
-    email: "",
-    password: "",
-  });
+  const data = useAppSelector((state) => state.form.data.login);
+  const dispatch = useAppDispatch();
 
   const [loginUser, { isError }] = useLoginUserMutation();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    dispatch(setLoginForm({ name: e.target.name, value: e.target.value }));
   };
 
   const handleLogin = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const auth = async () => {
-      const response = await loginUser({ ...form, strategy: "local" });
+      const response = await loginUser({ ...data, strategy: "local" });
 
       if (!response.error) {
         dispatch(login(response.data.user));
+        dispatch(setFormEmpty());
         navigate("/");
       }
     };
@@ -66,7 +57,7 @@ const Login = (): ReactElement => {
               isError ? "border border-red-600" : ""
             }`}
             onInput={handleInput}
-            value={form["email"]}
+            value={data["email"]}
           />
 
           <label htmlFor="password" className="self-start text-xl">
@@ -80,7 +71,7 @@ const Login = (): ReactElement => {
               isError ? "border border-red-600" : ""
             }`}
             onInput={handleInput}
-            value={form["password"]}
+            value={data["password"]}
           />
 
           <button className="bg-sky-500 w-[10rem] h-10 text-white rounded-lg hover:bg-sky-600 focus:bg-sky-600 cursor-pointer">

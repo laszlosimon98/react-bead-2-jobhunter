@@ -5,7 +5,7 @@ import { formatNumber, translateType } from "../../utils/util";
 import HomeOffice from "./HomeOffice";
 import JobTable from "./JobTable";
 import { useAppDispatch } from "../../hooks/reduxHooks";
-import { modalOff } from "../../services/visibilitySlice";
+import { modalOff } from "../../services/utils/visibilitySlice";
 
 const JobDetailModal = (): ReactElement => {
   const { jobId } = useParams();

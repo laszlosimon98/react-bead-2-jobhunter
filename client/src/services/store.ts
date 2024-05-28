@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import visibilityReducer from "./visibilitySlice";
-import authReducer from "./authSlice";
-import { authApi } from "./authApi";
+import visibilityReducer from "./utils/visibilitySlice";
+import authReducer from "./auth/authSlice";
+import formReducer from "./form/formSlice";
+import { authApi } from "./auth/authApi";
 
 export const store = configureStore({
   reducer: {
     visibility: visibilityReducer,
     auth: authReducer,
+    form: formReducer,
     [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

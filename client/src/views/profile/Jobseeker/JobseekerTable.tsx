@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { useAppSelector } from "../../../hooks/reduxHooks";
-import { userType } from "../../../services/authSlice";
+import { userType } from "../../../services/auth/authSlice";
 
 const JobseekerTable = (): ReactElement => {
   const user = useAppSelector((state) => state.auth.data) as userType;

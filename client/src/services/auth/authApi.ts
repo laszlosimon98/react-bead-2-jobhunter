@@ -9,7 +9,7 @@ type LoginType = {
   strategy: "local" | "jwt";
 };
 
-type ResultType = {
+type LoginResultType = {
   accessToken: string;
   authentication: {
     payload: {
@@ -24,13 +24,34 @@ type ResultType = {
   user: userType;
 };
 
+type RegisterType = {
+  email: string;
+  password: string;
+  fullname: string;
+  role: "jobseeker" | "company";
+};
+
+type RegisterResultType = {
+  id: number;
+  email: string;
+  fullname: string;
+  role: "jobseeker" | "company";
+};
+
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
-    loginUser: builder.mutation<ResultType, LoginType>({
+    loginUser: builder.mutation<LoginResultType, LoginType>({
       query: (body) => ({
         url: "authentication",
+        method: "POST",
+        body,
+      }),
+    }),
+    registerUser: builder.mutation<RegisterResultType, RegisterType>({
+      query: (body) => ({
+        url: "users",
         method: "POST",
         body,
       }),
@@ -38,4 +59,4 @@ export const authApi = createApi({
   }),
 });
 
-export const { useLoginUserMutation } = authApi;
+export const { useLoginUserMutation, useRegisterUserMutation } = authApi;
