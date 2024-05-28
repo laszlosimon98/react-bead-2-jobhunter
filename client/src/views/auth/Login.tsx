@@ -1,14 +1,60 @@
-import { ReactElement } from "react";
+import { ChangeEvent, ReactElement, useState } from "react";
+import { useLoginUserMutation } from "../../services/authApi";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { login } from "../../services/authSlice";
+
+type FormState = {
+  email: string;
+  password: string;
+};
 
 const Login = (): ReactElement => {
+  const [form, setForm] = useState<FormState>({
+    email: "",
+    password: "",
+  });
+
+  const [loginUser, { isError }] = useLoginUserMutation();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleLogin = (e: ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const auth = async () => {
+      const response = await loginUser({ ...form, strategy: "local" });
+
+      if (!response.error) {
+        dispatch(login(response.data.user));
+        navigate("/");
+      }
+    };
+
+    auth();
+  };
+
   return (
     <>
       <div className="w-full shadow-lg h-16 flex justify-center items-center">
         <h2 className="font-bold text-3xl px-7 text-sky-600">Bejelentkezés</h2>
       </div>
 
-      <div className="w-full h-[50vh] flex justify-center items-center">
-        <form className="flex flex-col justify-center items-center">
+      <div className="w-full h-[50vh] flex flex-col justify-center items-center">
+        {isError && (
+          <p className="text-red-600">Hibás e-mail cím vagy jelszó</p>
+        )}
+        <form
+          className="flex flex-col justify-center items-center"
+          onSubmit={handleLogin}
+        >
           <label htmlFor="email" className="self-start text-xl">
             E-mail
           </label>
@@ -16,7 +62,11 @@ const Login = (): ReactElement => {
             type="text"
             id="email"
             name="email"
-            className="p-2 w-[16rem] rounded-lg border outline-none mb-5 mt-1"
+            className={`p-2 w-[16rem] rounded-lg border outline-none mb-5 mt-1 ${
+              isError ? "border border-red-600" : ""
+            }`}
+            onInput={handleInput}
+            value={form["email"]}
           />
 
           <label htmlFor="password" className="self-start text-xl">
@@ -26,7 +76,11 @@ const Login = (): ReactElement => {
             type="password"
             id="password"
             name="password"
-            className="p-2 w-[16rem] rounded-lg border outline-none mb-5 mt-1"
+            className={`p-2 w-[16rem] rounded-lg border outline-none mb-5 mt-1 ${
+              isError ? "border border-red-600" : ""
+            }`}
+            onInput={handleInput}
+            value={form["password"]}
           />
 
           <button className="bg-sky-500 w-[10rem] h-10 text-white rounded-lg hover:bg-sky-600 focus:bg-sky-600 cursor-pointer">

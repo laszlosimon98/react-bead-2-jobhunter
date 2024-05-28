@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import { tempUser } from "../../temp/exampledata";
 import LoggedOutMenu from "./LoggedOutMenu";
 import JobSeekerMenu from "./JobseekerMenu";
 import CompanyMenu from "./CompanyMenu";
@@ -9,6 +8,8 @@ const DropdownMenu = (): ReactElement => {
   const isDropdownVisible = useAppSelector(
     (state) => state.visibility.isDropdownVisible
   );
+
+  const user = useAppSelector((state) => state.auth.data);
 
   return (
     <>
@@ -20,13 +21,8 @@ const DropdownMenu = (): ReactElement => {
       >
         {isDropdownVisible && (
           <ul className="flex flex-col justify-end items-center gap-2">
-            {tempUser.role === "logout" ? (
-              <LoggedOutMenu />
-            ) : tempUser.role === "jobseeker" ? (
-              <JobSeekerMenu />
-            ) : (
-              <CompanyMenu />
-            )}
+            {user === null && <LoggedOutMenu />}
+            {user?.role === "jobseeker" ? <JobSeekerMenu /> : <CompanyMenu />}
           </ul>
         )}
       </div>

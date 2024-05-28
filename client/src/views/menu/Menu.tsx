@@ -1,15 +1,15 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
-import { tempUser } from "../../temp/exampledata";
 import LoggedOutMenu from "./LoggedOutMenu";
 import JobSeekerMenu from "./JobseekerMenu";
 import CompanyMenu from "./CompanyMenu";
 import DropdownMenu from "./DropdownMenu";
-import { useAppDispatch } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { dropDownToggle } from "../../services/visibilitySlice";
 
 const Menu = (): ReactElement => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.data);
 
   return (
     <header className="bg-sky-700 flex items-center justify-between px-5 h-16 w-full">
@@ -26,13 +26,9 @@ const Menu = (): ReactElement => {
 
       <nav className="hidden md:block">
         <ul className="flex justify-end items-center gap-1 md:gap-3 lg:gap-5">
-          {tempUser.role === "logout" ? (
-            <LoggedOutMenu />
-          ) : tempUser.role === "jobseeker" ? (
-            <JobSeekerMenu />
-          ) : (
-            <CompanyMenu />
-          )}
+          {user === null && <LoggedOutMenu />}
+          {user?.role === "jobseeker" && <JobSeekerMenu />}
+          {user?.role === "company" && <CompanyMenu />}
         </ul>
       </nav>
     </header>

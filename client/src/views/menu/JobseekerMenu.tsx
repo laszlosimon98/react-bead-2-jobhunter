@@ -1,6 +1,8 @@
 import { ReactElement } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MenuItem from "./MenuItem";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { logout } from "../../services/authSlice";
 
 const JobSeekerMenu = (): ReactElement => {
   const items = [
@@ -12,11 +14,15 @@ const JobSeekerMenu = (): ReactElement => {
       title: "Profilom",
       path: "profile",
     },
-    {
-      title: "Kijelentkezés",
-      path: "",
-    },
   ];
+
+  const dispath = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispath(logout());
+    navigate("/");
+  };
 
   return (
     <>
@@ -25,6 +31,9 @@ const JobSeekerMenu = (): ReactElement => {
           <Link to={item.path}>{item.title}</Link>
         </MenuItem>
       ))}
+      <MenuItem>
+        <div onClick={handleLogout}>Kijelentkezés</div>
+      </MenuItem>
     </>
   );
 };

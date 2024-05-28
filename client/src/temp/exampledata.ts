@@ -54,10 +54,3 @@ export const tempData = [
     },
   },
 ];
-
-export const tempUser = {
-  id: 1,
-  email: "user1@jobhunter.hu",
-  fullname: "Jake Peralta",
-  role: "company",
-};

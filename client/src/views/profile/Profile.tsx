@@ -1,14 +1,17 @@
 import { ReactElement } from "react";
 import PageTitle from "../home/PageTitle";
-import { tempUser } from "../../temp/exampledata";
 import CompanyProfile from "./Company/CompanyProfile";
 import JobseekerProfile from "./Jobseeker/JobseekerProfile";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import { userType } from "../../services/authSlice";
 
 const Profile = (): ReactElement => {
+  const user = useAppSelector((state) => state.auth.data) as userType;
+
   return (
     <>
       <PageTitle>Profilom</PageTitle>
-      {tempUser.role === "company" ? <CompanyProfile /> : <JobseekerProfile />}
+      {user.role === "company" ? <CompanyProfile /> : <JobseekerProfile />}
     </>
   );
 };

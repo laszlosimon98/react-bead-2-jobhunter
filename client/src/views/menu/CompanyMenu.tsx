@@ -1,6 +1,8 @@
 import { ReactElement } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MenuItem from "./MenuItem";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { logout } from "../../services/authSlice";
 
 const CompanyMenu = (): ReactElement => {
   const items = [
@@ -16,11 +18,15 @@ const CompanyMenu = (): ReactElement => {
       title: "Álláshirdetés hozzáadása",
       path: "create",
     },
-    {
-      title: "Kijelentkezés",
-      path: "",
-    },
   ];
+
+  const dispath = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispath(logout());
+    navigate("/");
+  };
 
   return (
     <>
@@ -29,6 +35,9 @@ const CompanyMenu = (): ReactElement => {
           <Link to={item.path}>{item.title}</Link>
         </MenuItem>
       ))}
+      <MenuItem>
+        <div onClick={handleLogout}>Kijelentkezés</div>
+      </MenuItem>
     </>
   );
 };
