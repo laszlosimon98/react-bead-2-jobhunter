@@ -18,7 +18,7 @@ const CreateAdvertisement = (): ReactElement => {
         <AdvertisementForm />
       </div>
 
-      <div className="flex justify-evenly items-center mt-10">
+      <div className="flex justify-evenly items-center mt-10 pb-10">
         <button
           onClick={handleSave}
           className="border bg-sky-500 cursor-pointer w-52 h-12 rounded-lg hover:bg-sky-600 hover:w-[13.5rem] hover:h-14 text-lg transition-all text-white shadow-md"

@@ -10,7 +10,7 @@ export default {
       },
       width: {
         table: "clamp(300px, 75vw, 1500px)",
-        advertisement: "clamp(20rem, 85vw, 60rem)",
+        advertisement: "clamp(20rem, 90vw, 60rem)",
         text: "clamp(18rem, 85vw, 24rem)",
         number: "clamp(8rem, 85vw, 16rem)",
         filter: "clamp(20rem, 90vw, 60rem)",

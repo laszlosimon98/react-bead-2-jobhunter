@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import FilterDropdown from "../home/FilterDropdown";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { filterToggle } from "../../services/filterSlice";
+import { filterToggle } from "../../services/visibilitySlice";
 
 type SearchBarType = {
   title: string;
@@ -10,7 +10,7 @@ type SearchBarType = {
 const SearchBar = ({ title }: SearchBarType): ReactElement => {
   const dispatch = useAppDispatch();
   const isFilterVisible = useAppSelector(
-    (state) => state.filter.isFilterVisible
+    (state) => state.visibility.isFilterVisible
   );
 
   return (

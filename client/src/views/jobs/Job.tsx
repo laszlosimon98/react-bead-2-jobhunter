@@ -3,7 +3,7 @@ import HomeOffice from "./HomeOffice";
 import { Link } from "react-router-dom";
 import { formatNumber, translateType } from "../../utils/util";
 import { useAppDispatch } from "../../hooks/reduxHooks";
-import { modalOn } from "../../services/modalSlice";
+import { modalOn } from "../../services/visibilitySlice";
 
 const Job = ({ data }): ReactElement => {
   const dispatch = useAppDispatch();

@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 
 const CompanyProfile = (): ReactElement => {
   return (
-    <div className="mt-5 mx-10">
+    <div className="mt-5 lg:mx-10 ">
       <div className="flex flex-col justify-around items-center mb-5 gap-3 sm:gap-0 sm:mb-10 sm:flex-row">
         <h3 className="font-semibold text-2xl">A te hirdetéseid:</h3>
         <button className="border bg-sky-500 cursor-pointer w-52 h-12 rounded-lg hover:bg-sky-600 hover:w-[13.5rem] hover:h-14 text-lg transition-all text-white shadow-md">
           <Link to="/create">Hirdetés hozzáadása</Link>
         </button>
       </div>
-      <div className="ml-5 flex flex-col gap-5 w-full">
+      <div className="ml-5 flex flex-col gap-5">
         {tempData.map((data) => (
           <div
             key={data.id}
@@ -22,7 +22,7 @@ const CompanyProfile = (): ReactElement => {
               <h4 className="font-semibold text-3xl text-center lg:text-left">
                 {data.position}
               </h4>
-              <div className="flex w-[25rem] gap-6 text-lg">
+              <div className="flex w-[18rem] gap-6 text-lg lg:w-[32rem]">
                 <p>{translateType(data.type as string)}</p>
                 <p>{data.homeOffice ? "Home Office" : data.city}</p>
                 <p>
@@ -32,7 +32,7 @@ const CompanyProfile = (): ReactElement => {
               </div>
             </div>
 
-            <div className="flex justify-between items-center w-[22rem]">
+            <div className="flex justify-center gap-2 items-center lg:w-[22rem] lg:justify-between lg:gap-0">
               <button className="border bg-emerald-500 cursor-pointer w-28 h-12 rounded-lg hover:bg-emerald-600 hover:w-[7.5rem] hover:h-14 transition-all text-white shadow-md">
                 <Link to={`/modify/${data.id}`}>Szerkesztés</Link>
               </button>

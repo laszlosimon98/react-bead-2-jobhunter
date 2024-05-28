@@ -5,7 +5,7 @@ import { formatNumber, translateType } from "../../utils/util";
 import HomeOffice from "./HomeOffice";
 import JobTable from "./JobTable";
 import { useAppDispatch } from "../../hooks/reduxHooks";
-import { modalOff } from "../../services/modalSlice";
+import { modalOff } from "../../services/visibilitySlice";
 
 const JobDetailModal = (): ReactElement => {
   const { jobId } = useParams();
@@ -20,15 +20,18 @@ const JobDetailModal = (): ReactElement => {
   };
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50">
+    <div
+      className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50"
+      onClick={handleClose}
+    >
       <div className="flex justify-center items-center w-full h-screen">
         <div className="relative border w-jobModal h-fit py-3 shadow-lg bg-white rounded-lg">
-          <div
+          {/* <div
             onClick={handleClose}
             className="absolute top-0 right-0 bg-red-500 border shadow-lg rounded-lg w-8 h-8 flex justify-center items-center text-xl font-semibold cursor-pointer hover:bg-red-600 transition-all"
           >
             X
-          </div>
+          </div> */}
           <div className="w-full shadow-lg h-26 flex flex-col items-center justify-between gap-1 sm:h-16 sm:flex-row sm:gap-0">
             <div className="flex items-center justify-around flex-col md:flex-row">
               <h2 className="font-bold text-jobtitle px-7 text-sky-600 text-center sm:text-left">

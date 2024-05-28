@@ -6,7 +6,9 @@ import JobDetailModal from "../jobs/JobDetailModal";
 import { useAppSelector } from "../../hooks/reduxHooks";
 
 const Home = (): ReactElement => {
-  const isModalVisible = useAppSelector((state) => state.modal.isModalVisible);
+  const isModalVisible = useAppSelector(
+    (state) => state.visibility.isModalVisible
+  );
 
   return (
     <>

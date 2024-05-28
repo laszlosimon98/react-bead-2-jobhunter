@@ -7,7 +7,7 @@ import { useAppSelector } from "../../hooks/reduxHooks";
 
 const DropdownMenu = (): ReactElement => {
   const isDropdownVisible = useAppSelector(
-    (state) => state.dropdown.isDropdownVisible
+    (state) => state.visibility.isDropdownVisible
   );
 
   return (
