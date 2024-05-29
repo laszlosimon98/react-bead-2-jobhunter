@@ -24,15 +24,9 @@ const JobDetailModal = (): ReactElement => {
       className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50"
       onClick={handleClose}
     >
-      <div className="flex justify-center items-center w-full h-screen">
-        <div className="relative border w-jobModal h-fit py-3 shadow-lg bg-white rounded-lg">
-          {/* <div
-            onClick={handleClose}
-            className="absolute top-0 right-0 bg-red-500 border shadow-lg rounded-lg w-8 h-8 flex justify-center items-center text-xl font-semibold cursor-pointer hover:bg-red-600 transition-all"
-          >
-            X
-          </div> */}
-          <div className="w-full shadow-lg h-26 flex flex-col items-center justify-between gap-1 sm:h-16 sm:flex-row sm:gap-0">
+      <div className="absolute top-16 left-1/2 -translate-x-1/2 pb-4">
+        <div className="border w-jobModal h-[29rem] py-3 shadow-lg bg-white rounded-lg overflow-y-scroll">
+          <div className="shadow-lg flex flex-col items-center justify-between gap-1 sm:h-16 sm:flex-row sm:gap-0">
             <div className="flex items-center justify-around flex-col md:flex-row">
               <h2 className="font-bold text-jobtitle px-7 text-sky-600 text-center sm:text-left">
                 {job?.company}
@@ -51,7 +45,7 @@ const JobDetailModal = (): ReactElement => {
             </div>
           </div>
 
-          <div className="min-w-[20vw] w-[75vw] max-w-[1500px] mx-auto pt-2">
+          <div className="min-w-[20vw] w-[75vw] max-w-[900px] mx-auto">
             <div className="flex flex-col justify-center items-center gap-2 p-3 text-center sm:text-left sm:flex-row sm:justify-between sm:gap-0">
               <div>
                 <h3 className="font-semibold text-lg">Cég részletei</h3>

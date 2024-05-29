@@ -3,7 +3,8 @@ export const tempData = [
     id: 1,
     company: "Dunder Mifflin",
     position: "Front-end developer",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et mauris purus. Donec ac eros lorem. Donec quis ex ac velit rutrum ullamcorper. In accumsan enim vel lorem hendrerit, non egestas lorem porttitor. Ut condimentum ante lectus, at suscipit tortor varius at. Vestibulum congue, metus eu bibendum luctus, mauris arcu tincidunt nibh, ac gravida tortor eros et purus. Ut eget posuere ex, nec porta enim. Suspendisse non bibendum lectus. Praesent non scelerisque massa, non luctus purus. Curabitur venenatis quam justo, sed blandit eros faucibus non. Ut fringilla dignissim vestibulum. Morbi a imperdiet ante. Maecenas euismod diam odio, vitae imperdiet ante condimentum sit amet. Duis blandit neque eget justo lacinia fermentum. Donec a est sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
     salaryFrom: 300000,
     salaryTo: 400000,
     type: "full-time",

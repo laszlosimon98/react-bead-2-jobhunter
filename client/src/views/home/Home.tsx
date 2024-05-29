@@ -14,7 +14,7 @@ const Home = (): ReactElement => {
     <>
       <PageTitle>Álláshirdetések</PageTitle>
 
-      <div className="w-full flex justify-center items-center flex-col pt-10 ">
+      <div className="w-full flex justify-center items-center flex-col">
         <SearchBar title="Böngéssz az állások között:" />
         <JobLists />
       </div>

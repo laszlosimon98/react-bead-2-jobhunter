@@ -9,29 +9,27 @@ import Register from "./auth/Register";
 
 function App() {
   return (
-    <div className="h-screen">
-      <Layout>
-        <Routes>
-          <Route index element={<Home />} />
+    <Layout>
+      <Routes>
+        <Route index element={<Home />} />
 
-          <Route path="jobs">
-            <Route path=":jobId" element={<Home />} />
-          </Route>
+        <Route path="jobs">
+          <Route path=":jobId" element={<Home />} />
+        </Route>
 
-          <Route path="profile" element={<Profile />} />
+        <Route path="profile" element={<Profile />} />
 
-          <Route path="create" element={<CreateAdvertisement />} />
+        <Route path="create" element={<CreateAdvertisement />} />
 
-          <Route path="modify">
-            <Route path=":advertisementId" element={<ModifyAdvertisement />} />
-          </Route>
+        <Route path="modify">
+          <Route path=":advertisementId" element={<ModifyAdvertisement />} />
+        </Route>
 
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </Layout>
-    </div>
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </Layout>
   );
 }
 
