@@ -1,7 +1,11 @@
 import { ChangeEvent, ReactElement } from "react";
 import RegisterInput from "../components/RegisterInput";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { setFormEmpty, setRegisterForm } from "../../services/form/formSlice";
+import {
+  setError,
+  setFormEmpty,
+  setRegisterForm,
+} from "../../services/form/formSlice";
 import { useRegisterUserMutation } from "../../services/auth/authApi";
 import { useNavigate } from "react-router-dom";
 
@@ -15,13 +19,78 @@ const Register = (): ReactElement => {
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    /* Validation */
+    handleValidation();
 
-    const { fullname, email, password, role } = data;
-    registerUser({ fullname, email, password, role });
+    if (data.fullname && data.email && data.password && data.password_again) {
+      const { fullname, email, password, role } = data;
+      registerUser({ fullname, email, password, role });
 
-    dispatch(setFormEmpty());
-    navigate("/login");
+      dispatch(setFormEmpty());
+      navigate("/login");
+    }
+  };
+
+  const handleValidation = () => {
+    if (!data.fullname) {
+      dispatch(
+        setError({ name: "fullname", value: "A mező kitöltése kötelező!" })
+      );
+    } else {
+      dispatch(setError({ name: "fullname", value: "" }));
+    }
+
+    if (!data.email) {
+      dispatch(
+        setError({ name: "email", value: "A mező kitöltése kötelező!" })
+      );
+    } else {
+      dispatch(setError({ name: "email", value: "" }));
+    }
+
+    if (!data.password) {
+      dispatch(
+        setError({ name: "password", value: "A mező kitöltése kötelező!" })
+      );
+    } else {
+      dispatch(setError({ name: "password", value: "" }));
+    }
+
+    if (!data.password_again) {
+      dispatch(
+        setError({
+          name: "password_again",
+          value: "A mező kitöltése kötelező!",
+        })
+      );
+    } else {
+      if (data.password !== data.password_again) {
+        dispatch(
+          setError({
+            name: "password",
+            value: "A jelszavaknak meg kell egyeznie!",
+          })
+        );
+        dispatch(
+          setError({
+            name: "password_again",
+            value: "A jelszavaknak meg kell egyeznie!",
+          })
+        );
+      } else {
+        dispatch(
+          setError({
+            name: "password",
+            value: "",
+          })
+        );
+        dispatch(
+          setError({
+            name: "password_again",
+            value: "",
+          })
+        );
+      }
+    }
   };
 
   return (
@@ -35,13 +104,24 @@ const Register = (): ReactElement => {
           className="flex flex-col justify-center items-center"
           onSubmit={handleSubmit}
         >
-          <RegisterInput _for="fullname" title="Név" name="fullname" />
-          <RegisterInput _for="email" title="E-mail" name="email" />
-          <RegisterInput _for="password" title="Jelszó" name="password" />
+          <RegisterInput
+            _for="fullname"
+            title="Név"
+            name="fullname"
+            type="text"
+          />
+          <RegisterInput _for="email" title="E-mail" name="email" type="text" />
+          <RegisterInput
+            _for="password"
+            title="Jelszó"
+            name="password"
+            type="password"
+          />
           <RegisterInput
             _for="password_again"
             title="Jelszó újra"
             name="password_again"
+            type="password"
           />
 
           <div className="w-full flex justify-between items-center my-7">

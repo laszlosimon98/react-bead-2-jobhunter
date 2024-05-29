@@ -1,12 +1,17 @@
-import { ChangeEvent, ReactElement } from "react";
+import { ChangeEvent, ReactElement, useState } from "react";
 import { useLoginUserMutation } from "../../services/auth/authApi";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { login } from "../../services/auth/authSlice";
-import { setFormEmpty, setLoginForm } from "../../services/form/formSlice";
+import {
+  setError,
+  setFormEmpty,
+  setLoginForm,
+} from "../../services/form/formSlice";
 
 const Login = (): ReactElement => {
-  const data = useAppSelector((state) => state.form.data.login);
+  const { login: data, errors } = useAppSelector((state) => state.form.data);
+
   const dispatch = useAppDispatch();
 
   const [loginUser, { isError }] = useLoginUserMutation();
@@ -19,6 +24,8 @@ const Login = (): ReactElement => {
   const handleLogin = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    handleValidation();
+
     const auth = async () => {
       const response = await loginUser({ ...data, strategy: "local" });
 
@@ -29,7 +36,27 @@ const Login = (): ReactElement => {
       }
     };
 
-    auth();
+    if (data.email && data.password) {
+      auth();
+    }
+  };
+
+  const handleValidation = () => {
+    if (!data.email) {
+      dispatch(
+        setError({ name: "email", value: "A mező kitöltése kötelező!" })
+      );
+    } else {
+      dispatch(setError({ name: "email", value: "" }));
+    }
+
+    if (!data.password) {
+      dispatch(
+        setError({ name: "password", value: "A mező kitöltése kötelező!" })
+      );
+    } else {
+      dispatch(setError({ name: "password", value: "" }));
+    }
   };
 
   return (
@@ -40,7 +67,7 @@ const Login = (): ReactElement => {
 
       <div className="w-full h-[50vh] flex flex-col justify-center items-center">
         {isError && (
-          <p className="text-red-600">Hibás e-mail cím vagy jelszó</p>
+          <p className="text-red-600 text-sm">Hibás e-mail cím vagy jelszó</p>
         )}
         <form
           className="flex flex-col justify-center items-center"
@@ -54,11 +81,16 @@ const Login = (): ReactElement => {
             id="email"
             name="email"
             className={`p-2 w-[16rem] rounded-lg border outline-none mb-5 mt-1 ${
-              isError ? "border border-red-600" : ""
+              isError || errors.email ? "border border-red-600" : ""
             }`}
             onInput={handleInput}
             value={data["email"]}
           />
+          {errors.email && (
+            <p className="text-sm text-red-600 self-end -mt-6">
+              {errors.email}
+            </p>
+          )}
 
           <label htmlFor="password" className="self-start text-xl">
             Jelszó
@@ -68,13 +100,18 @@ const Login = (): ReactElement => {
             id="password"
             name="password"
             className={`p-2 w-[16rem] rounded-lg border outline-none mb-5 mt-1 ${
-              isError ? "border border-red-600" : ""
+              isError || errors.password ? "border border-red-600" : ""
             }`}
             onInput={handleInput}
             value={data["password"]}
           />
+          {errors.password && (
+            <p className="text-sm text-red-600 self-end -mt-6 mb-2">
+              {errors.password}
+            </p>
+          )}
 
-          <button className="bg-sky-500 w-[10rem] h-10 text-white rounded-lg hover:bg-sky-600 focus:bg-sky-600 cursor-pointer">
+          <button className="bg-sky-500 w-[10rem] h-10 text-white rounded-lg hover:bg-sky-600 cursor-pointer">
             Bejelentkezés
           </button>
         </form>

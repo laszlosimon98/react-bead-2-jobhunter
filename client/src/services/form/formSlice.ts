@@ -5,7 +5,7 @@ type UpdateType = {
   value: string;
 };
 
-type FormState = {
+export type FormState = {
   data: {
     login: {
       email: string;
@@ -18,6 +18,13 @@ type FormState = {
       password: string;
       password_again: string;
       role: "jobseeker" | "company";
+    };
+    errors: {
+      [key: string]: string | undefined;
+      email?: string;
+      password?: string;
+      fullname?: string;
+      passwordMatch?: string;
     };
   };
 };
@@ -34,6 +41,12 @@ const initialState: FormState = {
       password: "",
       password_again: "",
       role: "jobseeker",
+    },
+    errors: {
+      email: "",
+      password: "",
+      fullname: "",
+      passwordMatch: "",
     },
   },
 };
@@ -58,12 +71,19 @@ const formSlice = createSlice({
       state.data = {
         login: initialState.data.login,
         register: initialState.data.register,
+        errors: initialState.data.errors,
+      };
+    },
+    setError: (state, action: PayloadAction<UpdateType>) => {
+      state.data.errors = {
+        ...state.data.errors,
+        [action.payload.name]: action.payload.value,
       };
     },
   },
 });
 
-export const { setLoginForm, setRegisterForm, setFormEmpty } =
+export const { setLoginForm, setRegisterForm, setFormEmpty, setError } =
   formSlice.actions;
 
 export default formSlice.reducer;

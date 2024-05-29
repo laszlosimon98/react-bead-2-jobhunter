@@ -6,14 +6,16 @@ type RegisterPropsType = {
   _for: string;
   title: string;
   name: string;
+  type: string;
 };
 
 const RegisterInput = ({
   _for,
   title,
   name,
+  type,
 }: RegisterPropsType): ReactElement => {
-  const data = useAppSelector((state) => state.form.data.register);
+  const { register: data, errors } = useAppSelector((state) => state.form.data);
   const dispatch = useAppDispatch();
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,13 +27,20 @@ const RegisterInput = ({
         {title}
       </label>
       <input
-        type="text"
+        type={type}
         id={_for}
         name={_for}
-        className="p-2 w-[16rem] rounded-lg border outline-none mb-5 mt-1"
+        className={`p-2 w-[16rem] rounded-lg border outline-none mb-5 mt-1 ${
+          errors[name as string] ? "border border-red-600" : ""
+        }`}
         value={data[name as string]}
         onInput={handleInput}
       />
+      {errors[name as string] && (
+        <p className="text-sm text-red-600 self-end -mt-6">
+          {errors[name as string]}
+        </p>
+      )}
     </>
   );
 };
