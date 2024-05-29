@@ -3,6 +3,7 @@ import visibilityReducer from "./utils/visibilitySlice";
 import authReducer from "./auth/authSlice";
 import formReducer from "./form/formSlice";
 import { authApi } from "./auth/authApi";
+import { jobsApi } from "./jobs/jobsApi";
 
 export const store = configureStore({
   reducer: {
@@ -10,9 +11,12 @@ export const store = configureStore({
     auth: authReducer,
     form: formReducer,
     [authApi.reducerPath]: authApi.reducer,
+    [jobsApi.reducerPath]: jobsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware),
+    getDefaultMiddleware()
+      .concat(authApi.middleware)
+      .concat(jobsApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,6 +1,5 @@
 import { ReactElement } from "react";
 import { formatNumber, translateType } from "../../../utils/util";
-import { tempData } from "../../../temp/exampledata";
 import { Link } from "react-router-dom";
 
 const CompanyProfile = (): ReactElement => {
@@ -13,7 +12,7 @@ const CompanyProfile = (): ReactElement => {
         </button>
       </div>
       <div className="ml-5 flex flex-col gap-5">
-        {tempData.map((data) => (
+        {/* {tempData.map((data) => (
           <div
             key={data.id}
             className="flex flex-col justify-around items-center my-5 gap-3 lg:gap-0 lg:flex-row"
@@ -44,7 +43,7 @@ const CompanyProfile = (): ReactElement => {
               </button>
             </div>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );

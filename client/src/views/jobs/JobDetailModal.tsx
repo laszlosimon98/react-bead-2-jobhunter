@@ -1,15 +1,19 @@
 import { ReactElement } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { tempData } from "../../temp/exampledata";
 import { formatNumber, translateType } from "../../utils/util";
 import HomeOffice from "./HomeOffice";
 import JobTable from "./JobTable";
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { modalOff } from "../../services/utils/visibilitySlice";
+import { useGetJobByIDQuery } from "../../services/jobs/jobsApi";
 
 const JobDetailModal = (): ReactElement => {
   const { jobId } = useParams();
-  const job = tempData.find((data) => data.id === parseInt(jobId as string));
+  const { data: job, isLoading } = useGetJobByIDQuery(
+    parseInt(jobId as string)
+  );
+
+  console.log(job);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -18,6 +22,8 @@ const JobDetailModal = (): ReactElement => {
     dispatch(modalOff());
     navigate("/");
   };
+
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div
