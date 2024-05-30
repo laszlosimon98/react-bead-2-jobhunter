@@ -15,7 +15,7 @@ const JobseekerProfile = (): ReactElement => {
               Adataid és tapasztalataid egy helyen
             </p>
           </div>
-          <button className="border bg-sky-400 cursor-pointer w-52 h-12 rounded-lg hover:bg-sky-500 hover:w-[13.5rem] hover:h-14 transition-all text-white shadow-md">
+          <button className="border bg-sky-400 cursor-pointer w-52 h-12 rounded-lg hover:bg-sky-500 transition-all text-white shadow-md">
             Tapasztalakok szerkesztése
           </button>
         </div>

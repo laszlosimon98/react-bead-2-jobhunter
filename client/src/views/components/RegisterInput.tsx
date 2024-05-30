@@ -1,6 +1,6 @@
 import { ChangeEvent, ReactElement } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { setRegisterForm } from "../../services/utils/form/formSlice";
+import { setRegisterForm } from "../../services/auth/authSlice";
 
 type RegisterPropsType = {
   _for: string;
@@ -15,7 +15,7 @@ const RegisterInput = ({
   name,
   type,
 }: RegisterPropsType): ReactElement => {
-  const { register: data, errors } = useAppSelector((state) => state.form.data);
+  const { register: data, errors } = useAppSelector((state) => state.auth.data);
   const dispatch = useAppDispatch();
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {

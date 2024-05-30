@@ -74,7 +74,7 @@ const JobDetailModal = (): ReactElement => {
                     </p>
                   </div>
                   {user && user.role === "jobseeker" && (
-                    <button className="bg-sky-600 w-32 h-12 text-xl rounded-lg text-white cursor-pointer hover:bg-sky-500 hover:w-[8.5rem] hover:h-14 transition-all ">
+                    <button className="bg-sky-600 w-32 h-12 text-xl rounded-lg text-white cursor-pointer hover:bg-sky-500 transition-all ">
                       Jelentkezés
                     </button>
                   )}

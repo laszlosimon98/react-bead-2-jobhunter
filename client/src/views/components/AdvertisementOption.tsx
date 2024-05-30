@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { setFilter } from "../../services/jobs/jobsSlice";
+import { setAdvertisement } from "../../services/jobs/jobsSlice";
 
-const Option = (): ReactElement => {
-  const type = useAppSelector((state) => state.jobs.data.filter.type);
+const AdvertisementOption = (): ReactElement => {
+  const type = useAppSelector((state) => state.jobs.data.advertisement.type);
   const dispatch = useAppDispatch();
 
   return (
@@ -17,7 +17,7 @@ const Option = (): ReactElement => {
         className="border px-2 rounded-lg h-9 outline-none"
         value={type}
         onChange={(e) =>
-          dispatch(setFilter({ name: e.target.name, value: e.target.value }))
+          dispatch(setAdvertisement({ name: "type", value: e.target.value }))
         }
       >
         <option value="full-time">Teljes állás</option>
@@ -28,4 +28,4 @@ const Option = (): ReactElement => {
   );
 };
 
-export default Option;
+export default AdvertisementOption;

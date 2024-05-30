@@ -44,7 +44,7 @@ type UserType = {
   role: "jobseeker" | "company";
 };
 
-type AuthType = {
+export type AuthType = {
   id: number;
   token: string;
 };

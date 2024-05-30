@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import visibilityReducer from "./utils/visibilitySlice";
-import formReducer from "./utils/form/formSlice";
+import authReducer from "./auth/authSlice";
+import jobsReducer from "./jobs/jobsSlice";
 import { usersApi } from "./users/usersApi";
 import { jobsApi } from "./jobs/jobsApi";
 
 export const store = configureStore({
   reducer: {
     visibility: visibilityReducer,
-    form: formReducer,
+    auth: authReducer,
+    jobs: jobsReducer,
     [usersApi.reducerPath]: usersApi.reducer,
     [jobsApi.reducerPath]: jobsApi.reducer,
   },

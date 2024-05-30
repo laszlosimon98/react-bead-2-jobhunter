@@ -1,7 +1,12 @@
 import { ReactElement } from "react";
 import { formatNumber, translateType } from "../../utils/util";
+import { JobType } from "../../services/jobs/jobsApi";
 
-const JobTable = ({ job }): ReactElement => {
+type JobTableProps = {
+  job: JobType;
+};
+
+const JobTable = ({ job }: JobTableProps): ReactElement => {
   return (
     <table className="w-table mx-auto mt-1 table-auto shadow-lg">
       <tbody>

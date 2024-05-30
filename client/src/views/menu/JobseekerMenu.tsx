@@ -17,7 +17,7 @@ const JobSeekerMenu = (): ReactElement => {
 
   const navigate = useNavigate();
 
-  const [cookie, setCookie, removeCookie] = useCookies(["access_token"]);
+  const [, , removeCookie] = useCookies(["access_token"]);
 
   const handleLogout = () => {
     removeCookie("access_token", { path: "/" });

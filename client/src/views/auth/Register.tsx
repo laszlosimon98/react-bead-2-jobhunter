@@ -5,12 +5,12 @@ import {
   setError,
   setFormEmpty,
   setRegisterForm,
-} from "../../services/utils/form/formSlice";
+} from "../../services/auth/authSlice";
 import { useRegisterUserMutation } from "../../services/users/usersApi";
 import { useNavigate } from "react-router-dom";
 
 const Register = (): ReactElement => {
-  const data = useAppSelector((state) => state.form.data.register);
+  const data = useAppSelector((state) => state.auth.data.register);
   const dispatch = useAppDispatch();
 
   const [registerUser] = useRegisterUserMutation();

@@ -2,11 +2,11 @@ import { ReactElement } from "react";
 import Input from "../components/Input";
 import Option from "../components/Option";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { toggleHomeOffice } from "../../services/utils/form/formSlice";
+import { setFilter } from "../../services/jobs/jobsSlice";
 
 const FilterDropdown = (): ReactElement => {
   const homeOffice = useAppSelector(
-    (state) => state.form.data.filter.homeOffice
+    (state) => state.jobs.data.filter.homeOffice
   );
   const dispatch = useAppDispatch();
 
@@ -28,7 +28,9 @@ const FilterDropdown = (): ReactElement => {
           type="checkbox"
           id="homeoffice"
           checked={homeOffice}
-          onChange={() => dispatch(toggleHomeOffice())}
+          onChange={() =>
+            dispatch(setFilter({ name: "homeOffice", value: !homeOffice }))
+          }
         />
         <label htmlFor="homeoffice" className="ml-3">
           Home Office Lehetőség

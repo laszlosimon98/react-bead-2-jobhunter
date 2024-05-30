@@ -6,11 +6,11 @@ import {
   filterToggle,
 } from "../../services/utils/visibilitySlice";
 import {
-  removeFilter,
   setFilter,
-  setFiltered,
   setSearch,
-} from "../../services/utils/form/formSlice";
+  setFiltered,
+  removeFilter,
+} from "../../services/jobs/jobsSlice";
 
 type SearchBarType = {
   title: string;
@@ -23,7 +23,7 @@ const SearchBar = ({ title }: SearchBarType): ReactElement => {
   );
 
   const { company, isFiltered } = useAppSelector(
-    (state) => state.form.data.filter
+    (state) => state.jobs.data.filter
   );
 
   return (
@@ -49,7 +49,7 @@ const SearchBar = ({ title }: SearchBarType): ReactElement => {
             dispatch(filterClose());
             dispatch(setFiltered());
           }}
-          className="bg-sky-500 w-12 hover:w-14 h-10 hover:h-12 text-xl rounded-lg text-white cursor-pointer hover:bg-sky-600 transition-all md:w-28 md:hover:w-[7.5rem]"
+          className="bg-sky-500 w-12 h-10 text-xl rounded-lg text-white cursor-pointer hover:bg-sky-600 transition-all md:w-28"
         >
           <span className="md:hidden">🔍</span>
           <span className="hidden md:block">Keresés</span>
@@ -57,7 +57,7 @@ const SearchBar = ({ title }: SearchBarType): ReactElement => {
 
         <button
           onClick={() => dispatch(filterToggle())}
-          className="bg-stone-200 w-12 hover:w-14 h-10 hover:h-12 text-xl rounded-lg cursor-pointer hover:bg-stone-300 transition-all md:w-28 md:hover:w-[7.5rem]"
+          className="bg-stone-200 w-12  h-10 text-xl rounded-lg cursor-pointer hover:bg-stone-300 transition-all md:w-28"
         >
           <span className="md:hidden">🖋️</span>
           <span className="hidden md:block">Szűrés</span>
@@ -66,7 +66,7 @@ const SearchBar = ({ title }: SearchBarType): ReactElement => {
         {isFiltered && (
           <button
             onClick={() => dispatch(removeFilter())}
-            className="bg-red-400 w-12 hover:w-14 h-10 hover:h-12 text-xl rounded-lg cursor-pointer hover:bg-red-500 transition-all md:w-44 md:hover:w-[11.5rem]"
+            className="bg-red-400 w-12 h-10 text-xl rounded-lg cursor-pointer hover:bg-red-500 transition-all md:w-44"
           >
             <span className="md:hidden">X️</span>
             <span className="hidden md:block">Szűrő törlése</span>

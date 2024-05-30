@@ -7,13 +7,13 @@ import {
 import { useAppSelector } from "../../hooks/reduxHooks";
 
 const JobLists = (): ReactElement => {
-  const search = useAppSelector((state) => state.form.data.search);
+  const search = useAppSelector((state) => state.jobs.data.search);
 
   const { data: allJobs } = useGetJobsQuery();
 
   const { data: filteredJobs } = useGetJobByCompanyNameQuery(search);
   const isFiltered = useAppSelector(
-    (state) => state.form.data.filter.isFiltered
+    (state) => state.jobs.data.filter.isFiltered
   );
 
   return (
@@ -23,13 +23,13 @@ const JobLists = (): ReactElement => {
         {isFiltered ? (
           <>
             {filteredJobs?.data.map((job) => (
-              <Job key={job.id} data={job} />
+              <Job key={job.id} job={job} />
             ))}{" "}
           </>
         ) : (
           <>
             {allJobs?.data.map((job) => (
-              <Job key={job.id} data={job} />
+              <Job key={job.id} job={job} />
             ))}
           </>
         )}

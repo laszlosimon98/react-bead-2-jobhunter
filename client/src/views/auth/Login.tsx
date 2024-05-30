@@ -6,14 +6,14 @@ import {
   setError,
   setFormEmpty,
   setLoginForm,
-} from "../../services/utils/form/formSlice";
+} from "../../services/auth/authSlice";
 import { useCookies } from "react-cookie";
 
 const Login = (): ReactElement => {
-  const { login: data, errors } = useAppSelector((state) => state.form.data);
+  const { login: data, errors } = useAppSelector((state) => state.auth.data);
   const [loginUser, { isError }] = useLoginUserMutation();
   const navigate = useNavigate();
-  const [cookie, setCookie] = useCookies(["access_token"]);
+  const [, setCookie] = useCookies(["access_token"]);
   const dispatch = useAppDispatch();
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
