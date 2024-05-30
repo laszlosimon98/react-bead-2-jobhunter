@@ -1,8 +1,7 @@
 import { ReactElement } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MenuItem from "./MenuItem";
-import { useAppDispatch } from "../../hooks/reduxHooks";
-import { logout } from "../../services/auth/authSlice";
+import { useCookies } from "react-cookie";
 
 const CompanyMenu = (): ReactElement => {
   const items = [
@@ -20,11 +19,12 @@ const CompanyMenu = (): ReactElement => {
     },
   ];
 
-  const dispath = useAppDispatch();
   const navigate = useNavigate();
 
+  const [cookie, setCookie, removeCookie] = useCookies(["access_token"]);
+
   const handleLogout = () => {
-    dispath(logout());
+    removeCookie("access_token", { path: "/" });
     navigate("/");
   };
 

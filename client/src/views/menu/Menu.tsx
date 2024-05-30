@@ -4,12 +4,23 @@ import LoggedOutMenu from "./LoggedOutMenu";
 import JobSeekerMenu from "./JobseekerMenu";
 import CompanyMenu from "./CompanyMenu";
 import DropdownMenu from "./DropdownMenu";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { useAppDispatch } from "../../hooks/reduxHooks";
 import { dropDownToggle } from "../../services/utils/visibilitySlice";
+import { useCookies } from "react-cookie";
+import { useGetUserByIdQuery } from "../../services/users/usersApi";
 
 const Menu = (): ReactElement => {
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.auth.data);
+
+  const [cookies] = useCookies(["access_token"]);
+
+  const token = cookies?.access_token?.token;
+  const userId = cookies?.access_token?.userId;
+
+  const { data: user } = useGetUserByIdQuery(
+    { id: userId, token },
+    { skip: !userId }
+  );
 
   return (
     <header className="bg-sky-700 flex items-center justify-between px-5 h-16 w-full">
@@ -26,9 +37,14 @@ const Menu = (): ReactElement => {
 
       <nav className="hidden md:block">
         <ul className="flex justify-end items-center gap-1 md:gap-3 lg:gap-5">
-          {user === null && <LoggedOutMenu />}
-          {user?.role === "jobseeker" && <JobSeekerMenu />}
-          {user?.role === "company" && <CompanyMenu />}
+          {!token && !userId ? (
+            <LoggedOutMenu />
+          ) : (
+            <>
+              {user?.role === "jobseeker" && <JobSeekerMenu />}
+              {user?.role === "company" && <CompanyMenu />}
+            </>
+          )}
         </ul>
       </nav>
     </header>

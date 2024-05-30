@@ -1,3 +1,5 @@
+import { useCookies } from "react-cookie";
+
 export const translateType = (type: string) => {
   switch (type) {
     case "full-time":

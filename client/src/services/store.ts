@@ -1,21 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
 import visibilityReducer from "./utils/visibilitySlice";
-import authReducer from "./auth/authSlice";
-import formReducer from "./form/formSlice";
-import { authApi } from "./auth/authApi";
+import formReducer from "./utils/form/formSlice";
+import { usersApi } from "./users/usersApi";
 import { jobsApi } from "./jobs/jobsApi";
 
 export const store = configureStore({
   reducer: {
     visibility: visibilityReducer,
-    auth: authReducer,
     form: formReducer,
-    [authApi.reducerPath]: authApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
     [jobsApi.reducerPath]: jobsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
-      .concat(authApi.middleware)
+      .concat(usersApi.middleware)
       .concat(jobsApi.middleware),
 });
 

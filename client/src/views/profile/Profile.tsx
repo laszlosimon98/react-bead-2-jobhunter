@@ -2,16 +2,28 @@ import { ReactElement } from "react";
 import PageTitle from "../home/PageTitle";
 import CompanyProfile from "./Company/CompanyProfile";
 import JobseekerProfile from "./Jobseeker/JobseekerProfile";
-import { useAppSelector } from "../../hooks/reduxHooks";
-import { userType } from "../../services/auth/authSlice";
+import { useCookies } from "react-cookie";
+import { useGetUserByIdQuery } from "../../services/users/usersApi";
 
 const Profile = (): ReactElement => {
-  const user = useAppSelector((state) => state.auth.data) as userType;
+  const [cookies] = useCookies(["access_token"]);
+
+  const token = cookies?.access_token?.token;
+  const userId = cookies?.access_token?.userId;
+
+  const { data: user } = useGetUserByIdQuery(
+    { id: userId, token },
+    { skip: !userId }
+  );
 
   return (
     <>
       <PageTitle>Profilom</PageTitle>
-      {user.role === "company" ? <CompanyProfile /> : <JobseekerProfile />}
+      {token && userId && user?.role === "company" ? (
+        <CompanyProfile />
+      ) : (
+        <JobseekerProfile />
+      )}
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { ChangeEvent, ReactElement } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { setRegisterForm } from "../../services/form/formSlice";
+import { setRegisterForm } from "../../services/utils/form/formSlice";
 
 type RegisterPropsType = {
   _for: string;

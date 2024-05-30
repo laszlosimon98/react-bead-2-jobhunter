@@ -1,8 +1,17 @@
 import { ReactElement } from "react";
 import { formatNumber, translateType } from "../../../utils/util";
 import { Link } from "react-router-dom";
+import { useGetJobByUserIdQuery } from "../../../services/jobs/jobsApi";
+import { useCookies } from "react-cookie";
 
 const CompanyProfile = (): ReactElement => {
+  const [cookies] = useCookies(["access_token"]);
+  const userId = cookies?.access_token?.userId;
+
+  const { data: jobs, isLoading } = useGetJobByUserIdQuery(userId);
+
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <div className="mt-5 lg:mx-10 ">
       <div className="flex flex-col justify-around items-center mb-5 gap-3 sm:gap-0 sm:mb-10 sm:flex-row">
@@ -12,28 +21,28 @@ const CompanyProfile = (): ReactElement => {
         </button>
       </div>
       <div className="ml-5 flex flex-col gap-5">
-        {/* {tempData.map((data) => (
+        {jobs?.data.map((job) => (
           <div
-            key={data.id}
+            key={job.id}
             className="flex flex-col justify-around items-center my-5 gap-3 lg:gap-0 lg:flex-row"
           >
-            <div key={data.id}>
+            <div key={job.id}>
               <h4 className="font-semibold text-3xl text-center lg:text-left">
-                {data.position}
+                {job.position}
               </h4>
               <div className="flex w-[18rem] gap-6 text-lg lg:w-[32rem]">
-                <p>{translateType(data.type as string)}</p>
-                <p>{data.homeOffice ? "Home Office" : data.city}</p>
+                <p>{translateType(job.type as string)}</p>
+                <p>{job.homeOffice ? "Home Office" : job.city}</p>
                 <p>
-                  {formatNumber(data.salaryFrom as number)} -{" "}
-                  {formatNumber(data.salaryTo as number)}{" "}
+                  {formatNumber(job.salaryFrom as number)} -{" "}
+                  {formatNumber(job.salaryTo as number)}{" "}
                 </p>
               </div>
             </div>
 
             <div className="flex justify-center gap-2 items-center lg:w-[22rem] lg:justify-between lg:gap-0">
               <button className="border bg-emerald-500 cursor-pointer w-28 h-12 rounded-lg hover:bg-emerald-600 hover:w-[7.5rem] hover:h-14 transition-all text-white shadow-md">
-                <Link to={`/modify/${data.id}`}>Szerkesztés</Link>
+                <Link to={`/modify/${job.id}`}>Szerkesztés</Link>
               </button>
               <button className="border bg-sky-500 cursor-pointer w-28 h-12 rounded-lg hover:bg-sky-600 hover:w-[7.5rem] hover:h-14  transition-all text-white shadow-md">
                 Megtekintés
@@ -43,7 +52,7 @@ const CompanyProfile = (): ReactElement => {
               </button>
             </div>
           </div>
-        ))} */}
+        ))}
       </div>
     </div>
   );

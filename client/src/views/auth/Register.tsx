@@ -5,8 +5,8 @@ import {
   setError,
   setFormEmpty,
   setRegisterForm,
-} from "../../services/form/formSlice";
-import { useRegisterUserMutation } from "../../services/auth/authApi";
+} from "../../services/utils/form/formSlice";
+import { useRegisterUserMutation } from "../../services/users/usersApi";
 import { useNavigate } from "react-router-dom";
 
 const Register = (): ReactElement => {

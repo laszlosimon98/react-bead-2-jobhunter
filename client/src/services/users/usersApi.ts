@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { userType } from "./authSlice";
 
 const baseUrl: string = "http://localhost:3030";
 
@@ -21,7 +20,7 @@ type LoginResultType = {
     };
     strategy: "local" | "jwt";
   };
-  user: userType;
+  user: UserType;
 };
 
 type RegisterType = {
@@ -38,16 +37,41 @@ type RegisterResultType = {
   role: "jobseeker" | "company";
 };
 
-export const authApi = createApi({
-  reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl }),
+type UserType = {
+  id: number;
+  email: string;
+  fullname: string;
+  role: "jobseeker" | "company";
+};
+
+type AuthType = {
+  id: number;
+  token: string;
+};
+
+export const usersApi = createApi({
+  reducerPath: "usersApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl,
+  }),
+  tagTypes: ["User"],
   endpoints: (builder) => ({
+    getUserById: builder.query<UserType, AuthType>({
+      query: ({ id, token }) => ({
+        url: `users/${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      providesTags: ["User"],
+    }),
     loginUser: builder.mutation<LoginResultType, LoginType>({
       query: (body) => ({
         url: "authentication",
         method: "POST",
         body,
       }),
+      invalidatesTags: ["User"],
     }),
     registerUser: builder.mutation<RegisterResultType, RegisterType>({
       query: (body) => ({
@@ -55,8 +79,14 @@ export const authApi = createApi({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["User"],
     }),
   }),
 });
 
-export const { useLoginUserMutation, useRegisterUserMutation } = authApi;
+export const {
+  useGetUserByIdQuery,
+  useLazyGetUserByIdQuery,
+  useLoginUserMutation,
+  useRegisterUserMutation,
+} = usersApi;

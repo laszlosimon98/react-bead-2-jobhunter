@@ -1,21 +1,20 @@
-import { ChangeEvent, ReactElement, useState } from "react";
-import { useLoginUserMutation } from "../../services/auth/authApi";
+import { ChangeEvent, ReactElement } from "react";
+import { useLoginUserMutation } from "../../services/users/usersApi";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { login } from "../../services/auth/authSlice";
 import {
   setError,
   setFormEmpty,
   setLoginForm,
-} from "../../services/form/formSlice";
+} from "../../services/utils/form/formSlice";
+import { useCookies } from "react-cookie";
 
 const Login = (): ReactElement => {
   const { login: data, errors } = useAppSelector((state) => state.form.data);
-
-  const dispatch = useAppDispatch();
-
   const [loginUser, { isError }] = useLoginUserMutation();
   const navigate = useNavigate();
+  const [cookie, setCookie] = useCookies(["access_token"]);
+  const dispatch = useAppDispatch();
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setLoginForm({ name: e.target.name, value: e.target.value }));
@@ -30,8 +29,25 @@ const Login = (): ReactElement => {
       const response = await loginUser({ ...data, strategy: "local" });
 
       if (!response.error) {
-        dispatch(login(response.data.user));
+        const expires = new Date();
+        expires.setTime(
+          expires.getTime() + response.data.authentication.payload.exp
+        );
+
+        setCookie(
+          "access_token",
+          {
+            token: response.data.accessToken,
+            userId: response.data.user.id,
+          },
+          {
+            path: "/",
+            expires,
+          }
+        );
+
         dispatch(setFormEmpty());
+
         navigate("/");
       }
     };
