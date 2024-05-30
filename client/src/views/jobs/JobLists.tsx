@@ -1,17 +1,38 @@
 import { ReactElement } from "react";
 import Job from "./Job";
-import { useGetJobsQuery } from "../../services/jobs/jobsApi";
+import {
+  useGetJobByCompanyNameQuery,
+  useGetJobsQuery,
+} from "../../services/jobs/jobsApi";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 const JobLists = (): ReactElement => {
-  const { data: jobs, isLoading } = useGetJobsQuery();
+  const search = useAppSelector((state) => state.form.data.search);
 
-  if (isLoading) return <div></div>;
+  const { data: allJobs } = useGetJobsQuery();
+
+  const { data: filteredJobs } = useGetJobByCompanyNameQuery(search);
+  const isFiltered = useAppSelector(
+    (state) => state.form.data.filter.isFiltered
+  );
 
   return (
     <>
       <div className="flex flex-col min-w-[300px] w-[85vw] max-w-[950px] h-fit py-2">
         <h3 className="uppercase text-sky-600 self-start">Állás neve</h3>
-        {jobs && jobs.data.map((job) => <Job key={job.id} data={job} />)}
+        {isFiltered ? (
+          <>
+            {filteredJobs?.data.map((job) => (
+              <Job key={job.id} data={job} />
+            ))}{" "}
+          </>
+        ) : (
+          <>
+            {allJobs?.data.map((job) => (
+              <Job key={job.id} data={job} />
+            ))}
+          </>
+        )}
       </div>
     </>
   );

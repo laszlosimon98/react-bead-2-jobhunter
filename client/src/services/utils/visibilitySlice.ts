@@ -28,10 +28,13 @@ export const visibilitySlice = createSlice({
     filterToggle: (state) => {
       state.isFilterVisible = !state.isFilterVisible;
     },
+    filterClose: (state) => {
+      state.isFilterVisible = false;
+    },
   },
 });
 
-export const { modalOn, modalOff, dropDownToggle, filterToggle } =
+export const { modalOn, modalOff, dropDownToggle, filterToggle, filterClose } =
   visibilitySlice.actions;
 
 export default visibilitySlice.reducer;

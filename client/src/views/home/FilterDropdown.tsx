@@ -1,23 +1,35 @@
 import { ReactElement } from "react";
 import Input from "../components/Input";
 import Option from "../components/Option";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { toggleHomeOffice } from "../../services/utils/form/formSlice";
 
 const FilterDropdown = (): ReactElement => {
+  const homeOffice = useAppSelector(
+    (state) => state.form.data.filter.homeOffice
+  );
+  const dispatch = useAppDispatch();
+
   return (
     <div className="bg-white absolute w-filter right-0 top-24 h-[29rem] shadow-xl rounded-lg p-5 z-10 lg:h-[20rem]">
       <h3 className="font-bold text-3xl text-center lg:text-left">Szűrők</h3>
       <div className="flex flex-col justify-around items-center mt-5 gap-3 lg:gap-0 lg:flex-row">
-        <Input title="Fizetési sáv alja" type="number" />
-        <Input title="Fizetési sáv teteje" type="number" />
+        <Input title="Fizetési sáv alja" type="number" name="salaryFrom" />
+        <Input title="Fizetési sáv teteje" type="number" name="salaryTo" />
       </div>
 
       <div className="flex flex-col justify-around items-center mt-8 gap-3 lg:gap-0 lg:flex-row">
         <Option />
-        <Input title="Település" type="text" />
+        <Input title="Település" type="text" name="city" />
       </div>
 
       <div className="mt-6 text-center">
-        <input type="checkbox" id="homeoffice" />
+        <input
+          type="checkbox"
+          id="homeoffice"
+          checked={homeOffice}
+          onChange={() => dispatch(toggleHomeOffice())}
+        />
         <label htmlFor="homeoffice" className="ml-3">
           Home Office Lehetőség
         </label>
