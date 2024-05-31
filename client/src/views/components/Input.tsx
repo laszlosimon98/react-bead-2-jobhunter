@@ -22,7 +22,7 @@ const Input = ({ title, type, name }: InputProps): ReactElement => {
         type={type}
         name={name}
         min={0}
-        className={`border rounded-lg ${
+        className={`border border-sky-700 border-opacity-80 rounded-lg ${
           type === "text" ? "w-text" : "w-number"
         } h-9 outline-none p-2`}
         value={filter[name] as string}

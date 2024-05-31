@@ -14,7 +14,7 @@ const AdvertisementOption = (): ReactElement => {
       <select
         name="type"
         id="type"
-        className="border px-2 rounded-lg h-9 outline-none"
+        className="border border-sky-700 border-opacity-80 px-2 rounded-lg h-9 outline-none"
         value={type}
         onChange={(e) =>
           dispatch(setAdvertisement({ name: "type", value: e.target.value }))

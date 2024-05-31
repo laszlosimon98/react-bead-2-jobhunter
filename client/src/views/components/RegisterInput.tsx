@@ -1,6 +1,6 @@
 import { ChangeEvent, ReactElement } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { setRegisterForm } from "../../services/auth/authSlice";
+import { setRegisterForm } from "../../services/users/usersSlice";
 
 type RegisterPropsType = {
   _for: string;
@@ -15,7 +15,9 @@ const RegisterInput = ({
   name,
   type,
 }: RegisterPropsType): ReactElement => {
-  const { register: data, errors } = useAppSelector((state) => state.auth.data);
+  const { register: data, errors } = useAppSelector(
+    (state) => state.users.data
+  );
   const dispatch = useAppDispatch();
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +32,7 @@ const RegisterInput = ({
         type={type}
         id={_for}
         name={_for}
-        className={`p-2 w-[16rem] rounded-lg border outline-none mb-5 mt-1 ${
+        className={`p-2 w-[16rem] rounded-lg border border-sky-700 border-opacity-80 outline-none mb-5 mt-1 ${
           errors[name as string] ? "border border-red-600" : ""
         }`}
         value={data[name as string]}

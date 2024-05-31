@@ -22,7 +22,7 @@ const TextArea = ({ title, name }: TextAreaProps): ReactElement => {
       <textarea
         id={title}
         name={name}
-        className="border rounded-lg w-text h-[7.5rem] outline-none p-2 resize-none"
+        className="border border-sky-700 border-opacity-80 rounded-lg w-text h-[7.5rem] outline-none p-2 resize-none"
         value={desription}
         onChange={(e) =>
           dispatch(setAdvertisement({ name, value: e.target.value }))

@@ -1,4 +1,9 @@
-import { useCookies } from "react-cookie";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { LoginResultType } from "../services/users/usersApi";
+
+type ResponseType = {
+  data: LoginResultType;
+};
 
 export const translateType = (type: string) => {
   switch (type) {
@@ -28,4 +33,21 @@ export const formatNumber = (num: number) => {
       .concat(num.toString().slice(1, 2))
       .concat(" M");
   }
+};
+
+export const saveCookie = (response: ResponseType, setCookie: any) => {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + response.data.authentication.payload.exp);
+
+  setCookie(
+    "access_token",
+    {
+      token: response.data.accessToken,
+      userId: response.data.user.id,
+    },
+    {
+      path: "/",
+      expires,
+    }
+  );
 };

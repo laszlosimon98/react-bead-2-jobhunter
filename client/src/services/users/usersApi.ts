@@ -8,7 +8,7 @@ type LoginType = {
   strategy: "local" | "jwt";
 };
 
-type LoginResultType = {
+export type LoginResultType = {
   accessToken: string;
   authentication: {
     payload: {
@@ -37,7 +37,7 @@ type RegisterResultType = {
   role: "jobseeker" | "company";
 };
 
-type UserType = {
+export type UserType = {
   id: number;
   email: string;
   fullname: string;

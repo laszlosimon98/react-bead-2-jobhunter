@@ -5,28 +5,73 @@ import {
   setError,
   setFormEmpty,
   setRegisterForm,
-} from "../../services/auth/authSlice";
-import { useRegisterUserMutation } from "../../services/users/usersApi";
+} from "../../services/users/usersSlice";
+import {
+  useLoginUserMutation,
+  useRegisterUserMutation,
+} from "../../services/users/usersApi";
 import { useNavigate } from "react-router-dom";
+import {
+  ParamExperienceType,
+  useAddExperiencesMutation,
+} from "../../services/experiences/experiences";
+import { saveCookie } from "../../utils/util";
+import { useCookies } from "react-cookie";
 
 const Register = (): ReactElement => {
-  const data = useAppSelector((state) => state.auth.data.register);
+  const data = useAppSelector((state) => state.users.data.register);
   const dispatch = useAppDispatch();
-
-  const [registerUser] = useRegisterUserMutation();
   const navigate = useNavigate();
 
-  const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
+  const [, setCookie] = useCookies(["access_token"]);
+
+  const [registerUser] = useRegisterUserMutation();
+  const [loginUser] = useLoginUserMutation();
+  const [addExperiences] = useAddExperiencesMutation();
+
+  const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     handleValidation();
 
+    const experiencesArray: ParamExperienceType[] = [];
+    if (data.experiences) {
+      const rows = data.experiences.split("\n");
+
+      rows.map((row) => {
+        const [company, title, interval] = row.split(";");
+
+        if (company && title && interval) {
+          experiencesArray.push({ company, title, interval });
+        }
+      });
+    }
+
     if (data.fullname && data.email && data.password && data.password_again) {
       const { fullname, email, password, role } = data;
-      registerUser({ fullname, email, password, role });
+      const res = await registerUser({ fullname, email, password, role });
+
+      if (res.data) {
+        const response = await loginUser({
+          email,
+          password,
+          strategy: "local",
+        });
+
+        if (!response.error) {
+          saveCookie(response, setCookie);
+
+          if (experiencesArray && response.data?.accessToken) {
+            addExperiences({
+              token: response.data.accessToken,
+              body: experiencesArray,
+            });
+          }
+        }
+      }
 
       dispatch(setFormEmpty());
-      navigate("/login");
+      navigate("/");
     }
   };
 
@@ -154,6 +199,22 @@ const Register = (): ReactElement => {
               Munkáltató
             </label>
           </div>
+          {data.role === "jobseeker" && (
+            <textarea
+              name="experiences"
+              id="experiences"
+              className="text-sm p-2 w-min-[16rem] w-[18rem] max-w-[20rem] min-h-20 max-h-52 border border-sky-700 border-opacity-80 rounded-lg mb-4 "
+              value={data?.expreriences}
+              onInput={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                dispatch(
+                  setRegisterForm({
+                    name: "experiences",
+                    value: e.target.value,
+                  })
+                )
+              }
+            ></textarea>
+          )}
 
           <button className="bg-sky-500 w-[10rem] h-10 text-white rounded-lg hover:bg-sky-600 focus:bg-sky-600 cursor-pointer">
             Regisztráció

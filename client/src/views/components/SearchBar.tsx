@@ -32,7 +32,7 @@ const SearchBar = ({ title }: SearchBarType): ReactElement => {
       <div className="flex justify-between gap-2">
         <input
           type="search"
-          className="border rounded-lg w-full h-10 outline-none p-2"
+          className="border border-sky-700 border-opacity-80 rounded-lg w-full h-10 outline-none p-2"
           value={company}
           onInput={(e: ChangeEvent<HTMLInputElement>) => {
             {

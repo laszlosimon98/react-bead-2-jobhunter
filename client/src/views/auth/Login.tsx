@@ -6,11 +6,12 @@ import {
   setError,
   setFormEmpty,
   setLoginForm,
-} from "../../services/auth/authSlice";
+} from "../../services/users/usersSlice";
 import { useCookies } from "react-cookie";
+import { saveCookie } from "../../utils/util";
 
 const Login = (): ReactElement => {
-  const { login: data, errors } = useAppSelector((state) => state.auth.data);
+  const { login: data, errors } = useAppSelector((state) => state.users.data);
   const [loginUser, { isError }] = useLoginUserMutation();
   const navigate = useNavigate();
   const [, setCookie] = useCookies(["access_token"]);
@@ -29,25 +30,9 @@ const Login = (): ReactElement => {
       const response = await loginUser({ ...data, strategy: "local" });
 
       if (!response.error) {
-        const expires = new Date();
-        expires.setTime(
-          expires.getTime() + response.data.authentication.payload.exp
-        );
-
-        setCookie(
-          "access_token",
-          {
-            token: response.data.accessToken,
-            userId: response.data.user.id,
-          },
-          {
-            path: "/",
-            expires,
-          }
-        );
+        saveCookie(response, setCookie);
 
         dispatch(setFormEmpty());
-
         navigate("/");
       }
     };
@@ -96,7 +81,7 @@ const Login = (): ReactElement => {
             type="text"
             id="email"
             name="email"
-            className={`p-2 w-[16rem] rounded-lg border outline-none mb-5 mt-1 ${
+            className={`p-2 w-[16rem] border-sky-700 border-opacity-80 rounded-lg border outline-none mb-5 mt-1 ${
               isError || errors.email ? "border border-red-600" : ""
             }`}
             onInput={handleInput}
@@ -115,7 +100,7 @@ const Login = (): ReactElement => {
             type="password"
             id="password"
             name="password"
-            className={`p-2 w-[16rem] rounded-lg border outline-none mb-5 mt-1 ${
+            className={`p-2 w-[16rem] rounded-lg border border-sky-700 border-opacity-80 outline-none mb-5 mt-1 ${
               isError || errors.password ? "border border-red-600" : ""
             }`}
             onInput={handleInput}

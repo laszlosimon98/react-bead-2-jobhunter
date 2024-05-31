@@ -12,12 +12,13 @@ type AuthState = {
       password: string;
     };
     register: {
-      [key: string]: string;
+      [key: string]: string | undefined;
       fullname: string;
       email: string;
       password: string;
       password_again: string;
       role: "jobseeker" | "company";
+      experiences?: string;
     };
     errors: {
       [key: string]: string | undefined;
@@ -41,6 +42,7 @@ const initialState: AuthState = {
       password: "",
       password_again: "",
       role: "jobseeker",
+      experiences: "",
     },
     errors: {
       email: "",
@@ -51,7 +53,7 @@ const initialState: AuthState = {
   },
 };
 
-const authSlice = createSlice({
+const usersSlice = createSlice({
   name: "form",
   initialState,
   reducers: {
@@ -82,6 +84,6 @@ const authSlice = createSlice({
 });
 
 export const { setLoginForm, setRegisterForm, setFormEmpty, setError } =
-  authSlice.actions;
+  usersSlice.actions;
 
-export default authSlice.reducer;
+export default usersSlice.reducer;
