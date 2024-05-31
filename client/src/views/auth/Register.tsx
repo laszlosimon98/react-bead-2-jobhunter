@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import {
   ParamExperienceType,
   useAddExperiencesMutation,
-} from "../../services/experiences/experiences";
+} from "../../services/experiences/experiencesApi";
 import { saveCookie } from "../../utils/util";
 import { useCookies } from "react-cookie";
 

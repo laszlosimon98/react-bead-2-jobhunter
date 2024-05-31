@@ -30,7 +30,7 @@ type CreatedType = {
   role: string;
 };
 
-type JobCreatedType = JobType & {
+type JobReturnedType = JobType & {
   createdBy: CreatedType;
 };
 
@@ -68,7 +68,7 @@ export const jobsApi = createApi({
       providesTags: ["Jobs"],
     }),
     createJob: builder.mutation<
-      JobCreatedType,
+      JobReturnedType,
       Omit<Omit<JobType, "id">, "userId"> & { token: string }
     >({
       query: ({ token, ...patch }) => ({
@@ -82,7 +82,7 @@ export const jobsApi = createApi({
       invalidatesTags: ["Jobs"],
     }),
     modifyJob: builder.mutation<
-      JobCreatedType,
+      JobReturnedType,
       Omit<Omit<JobType, "id">, "userId"> & { token: string; id: number }
     >({
       query: ({ id, token, ...patch }) => ({
@@ -95,9 +95,19 @@ export const jobsApi = createApi({
       }),
       invalidatesTags: ["Jobs"],
     }),
-    deleteJob: builder.mutation<JobCreatedType, AuthType>({
+    deleteJob: builder.mutation<JobReturnedType, AuthType>({
       query: ({ id, token }) => ({
         url: `jobs/${id}`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["Jobs"],
+    }),
+    deleteAllJob: builder.mutation<JobReturnedType[], string>({
+      query: (token) => ({
+        url: "jobs",
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -117,4 +127,5 @@ export const {
   useCreateJobMutation,
   useModifyJobMutation,
   useDeleteJobMutation,
+  useDeleteAllJobMutation,
 } = jobsApi;

@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import { formatNumber, translateType } from "../../../utils/util";
 import { Link } from "react-router-dom";
 import {
+  useDeleteAllJobMutation,
   useDeleteJobMutation,
   useGetJobByUserIdQuery,
 } from "../../../services/jobs/jobsApi";
@@ -18,6 +19,7 @@ const CompanyProfile = (): ReactElement => {
 
   const { data: jobs, isLoading } = useGetJobByUserIdQuery(userId);
   const [deleteJob] = useDeleteJobMutation();
+  const [deleteAllJob] = useDeleteAllJobMutation();
 
   const handleDelete = (id: number) => {
     deleteJob({ id, token });
@@ -26,15 +28,23 @@ const CompanyProfile = (): ReactElement => {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div className="mt-5 lg:mx-10 ">
+    <div className="mt-5 ">
       <div className="flex flex-col justify-around items-center mb-5 gap-3 sm:gap-0 sm:mb-10 sm:flex-row">
-        <h3 className="font-semibold text-2xl">A te hirdetéseid:</h3>
-        <button
-          onClick={() => dispatch(setEmpty())}
-          className="border bg-sky-500 cursor-pointer w-52 h-12 rounded-lg hover:bg-sky-600 text-lg transition-all text-white shadow-md"
-        >
-          <Link to="/create">Hirdetés hozzáadása</Link>
-        </button>
+        <h3 className="font-semibold text-2xl sm:ml-2">A te hirdetéseid:</h3>
+        <div className="w-[14rem] flex flex-col gap-1 justify-center sm:items-center sm:flex-row sm:gap-0 sm:w-[28rem]">
+          <button
+            onClick={() => dispatch(setEmpty())}
+            className="border bg-sky-500 cursor-pointer w-52 h-12 rounded-lg hover:bg-sky-600 text-lg transition-all text-white shadow-md"
+          >
+            <Link to="/create">Hirdetés hozzáadása</Link>
+          </button>
+          <button
+            onClick={() => deleteAllJob(token)}
+            className="border bg-red-500 cursor-pointer w-52 h-12 rounded-lg hover:bg-red-600 text-lg transition-all text-white shadow-md"
+          >
+            Összes állás törlése
+          </button>
+        </div>
       </div>
       <div className="ml-5 flex flex-col gap-5">
         {jobs?.data.map((job) => (

@@ -2,15 +2,17 @@ import { configureStore } from "@reduxjs/toolkit";
 import visibilityReducer from "./utils/visibilitySlice";
 import usersReducer from "./users/usersSlice";
 import jobsReducer from "./jobs/jobsSlice";
+import experiencesReducer from "./experiences/experiencesSlice";
 import { usersApi } from "./users/usersApi";
 import { jobsApi } from "./jobs/jobsApi";
-import { experiencesApi } from "./experiences/experiences";
+import { experiencesApi } from "./experiences/experiencesApi";
 
 export const store = configureStore({
   reducer: {
     visibility: visibilityReducer,
     users: usersReducer,
     jobs: jobsReducer,
+    experiences: experiencesReducer,
     [usersApi.reducerPath]: usersApi.reducer,
     [jobsApi.reducerPath]: jobsApi.reducer,
     [experiencesApi.reducerPath]: experiencesApi.reducer,

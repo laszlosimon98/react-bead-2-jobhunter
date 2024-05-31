@@ -11,7 +11,7 @@ const FilterDropdown = (): ReactElement => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="bg-white absolute w-filter right-0 top-24 h-[29rem] shadow-xl rounded-lg p-5 z-10 lg:h-[20rem]">
+    <div className="bg-white absolute w-filter right-0 top-24 h-[29rem] shadow-lg shadow-sky-400 rounded-lg p-5 z-10 lg:h-[20rem]">
       <h3 className="font-bold text-3xl text-center lg:text-left">Szűrők</h3>
       <div className="flex flex-col justify-around items-center mt-5 gap-3 lg:gap-0 lg:flex-row">
         <Input title="Fizetési sáv alja" type="number" name="salaryFrom" />

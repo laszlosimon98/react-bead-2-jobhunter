@@ -67,6 +67,43 @@ export const experiencesApi = createApi({
       }),
       invalidatesTags: ["Experiences"],
     }),
+    modifyExperience: builder.mutation<
+      ExperienceType,
+      { id: number; token: string } & ParamExperienceType
+    >({
+      query: ({ id, token, ...patch }) => ({
+        url: `experiences/${id}`,
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: patch,
+      }),
+      invalidatesTags: ["Experiences"],
+    }),
+    deleteExperience: builder.mutation<
+      ExperienceType,
+      { id: number; token: string }
+    >({
+      query: ({ id, token }) => ({
+        url: `experiences/${id}`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["Experiences"],
+    }),
+    deleteAllExperiences: builder.mutation<ExperienceType, string>({
+      query: (token) => ({
+        url: `experiences`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["Experiences"],
+    }),
   }),
 });
 
@@ -74,4 +111,7 @@ export const {
   useGetExperiencesQuery,
   useAddExperienceMutation,
   useAddExperiencesMutation,
+  useModifyExperienceMutation,
+  useDeleteExperienceMutation,
+  useDeleteAllExperiencesMutation,
 } = experiencesApi;

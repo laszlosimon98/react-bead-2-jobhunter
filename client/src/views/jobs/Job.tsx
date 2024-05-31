@@ -15,7 +15,7 @@ const Job = ({ job }: JobTableProps): ReactElement => {
 
   return (
     <Link to={`jobs/${job.id}`} onClick={() => dispatch(modalOn())}>
-      <div className="flex flex-col sm:flex-row justify-between items-center p-2 shadow-md my-2 cursor-pointer rounded-lg hover:p-3 hover:mb-1 hover:-mx-2 hover:bg-stone-200 transition-all">
+      <div className="flex flex-col sm:flex-row justify-between items-center p-2 shadow-md my-2 cursor-pointer rounded-lg hover:p-3 hover:mb-1 hover:-mx-2 hover:bg-sky-200 transition-all">
         <div className="ml-2">
           <p className="font-semibold">{job.company}</p>
           <p className="text-sm opacity-70 text-center sm:text-left">
