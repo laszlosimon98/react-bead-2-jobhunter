@@ -8,6 +8,7 @@ import { modalOff } from "../../services/utils/visibilitySlice";
 import { useGetJobByIdQuery } from "../../services/jobs/jobsApi";
 import { useCookies } from "react-cookie";
 import { useGetUserByIdQuery } from "../../services/users/usersApi";
+import Loading from "../components/Loading";
 
 const JobDetailModal = (): ReactElement => {
   const { jobId } = useParams();
@@ -41,9 +42,7 @@ const JobDetailModal = (): ReactElement => {
       <div className="absolute top-16 left-1/2 -translate-x-1/2 pb-4">
         <div className="border w-jobModal h-[29rem] py-3 shadow-lg bg-white rounded-lg overflow-y-scroll">
           {isLoading ? (
-            <div className="text-3xl flex justify-center items-center h-full opacity-65">
-              Loading...
-            </div>
+            <Loading />
           ) : (
             <>
               <div className="shadow-lg flex flex-col items-center justify-between gap-1 sm:h-16 sm:flex-row sm:gap-0">

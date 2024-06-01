@@ -1,53 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import type {
+  UserType,
+  AuthType,
+  LoginResultType,
+  LoginType,
+  RegisterResultType,
+  RegisterType,
+} from "../../types/userTypes";
 
 const baseUrl: string = "http://localhost:3030";
-
-type LoginType = {
-  email: string;
-  password: string;
-  strategy: "local" | "jwt";
-};
-
-export type LoginResultType = {
-  accessToken: string;
-  authentication: {
-    payload: {
-      aud: string;
-      exp: number;
-      iat: number;
-      jti: string;
-      sub: string;
-    };
-    strategy: "local" | "jwt";
-  };
-  user: UserType;
-};
-
-type RegisterType = {
-  email: string;
-  password: string;
-  fullname: string;
-  role: "jobseeker" | "company";
-};
-
-type RegisterResultType = {
-  id: number;
-  email: string;
-  fullname: string;
-  role: "jobseeker" | "company";
-};
-
-export type UserType = {
-  id: number;
-  email: string;
-  fullname: string;
-  role: "jobseeker" | "company";
-};
-
-export type AuthType = {
-  id: number;
-  token: string;
-};
 
 export const usersApi = createApi({
   reducerPath: "usersApi",

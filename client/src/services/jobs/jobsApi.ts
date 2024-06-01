@@ -1,38 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { AuthType } from "../users/usersApi";
+import type {
+  JobType,
+  GetJobsType,
+  JobReturnedType,
+} from "../../types/jobsTypes";
+import type { AuthType } from "../../types/userTypes";
 
 const baseUrl = "http://localhost:3030";
-
-export type JobType = {
-  id: number;
-  company: string;
-  position: string;
-  description: string;
-  salaryFrom: number;
-  salaryTo: number;
-  type: "full-time" | "part-time" | "internship";
-  city: string;
-  homeOffice: boolean;
-  userId: number;
-};
-
-type GetJobsType = {
-  total: number;
-  skip: number;
-  limit: number;
-  data: JobType[];
-};
-
-type CreatedType = {
-  id: number;
-  email: string;
-  fullname: string;
-  role: string;
-};
-
-type JobReturnedType = JobType & {
-  createdBy: CreatedType;
-};
 
 type FilterType = Partial<JobType>;
 

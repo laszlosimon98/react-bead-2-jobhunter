@@ -1,26 +1,36 @@
 import { ReactElement } from "react";
-import JobseekerTable from "./JobseekerTable";
-import JobseekerExperience from "./JobseekerExperience";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
-import { toggleModifying } from "../../../services/experiences/experiencesSlice";
-import JobseekerExperienceModal from "./JobseekerExperienceModal";
-import { useDeleteAllExperiencesMutation } from "../../../services/experiences/experiencesApi";
+import { useAppSelector } from "../../../hooks/reduxHooks";
+import {
+  creatingOn,
+  modifyingOff,
+  modifyingOn,
+  openModal,
+} from "../../../services/experiences/experiencesSlice";
+import JobseekerExperienceModal from "./components/JobseekerExperienceModal";
+import {
+  useDeleteAllExperiencesMutation,
+  useGetExperiencesQuery,
+} from "../../../services/experiences/experiencesApi";
 import { useCookies } from "react-cookie";
+import JobseekerButton from "./components/JobseekerInput";
+import JobseekerTable from "./components/JobseekerTable";
+import JobseekerExperience from "./components/JobseekerExperience";
 
 const JobseekerProfile = (): ReactElement => {
-  const { isModifying, isSelected } = useAppSelector(
+  const { isModifying, isModalOpen } = useAppSelector(
     (state) => state.experiences
   );
-  const dispatch = useAppDispatch();
-  const [deleteAllExperiences] = useDeleteAllExperiencesMutation();
 
   const [cookie] = useCookies(["access_token"]);
   const token = cookie.access_token.token;
 
+  const { data: experiences } = useGetExperiencesQuery(token);
+  const [deleteAllExperiences] = useDeleteAllExperiencesMutation();
+
   return (
     <div className="pt-10">
       <div className="h-fit w-table mx-auto rounded-lg shadow-lg shadow-sky-400 pb-3">
-        <div className="flex flex-col justify-between items-center py-2 px-4  rounded-lg gap-3 sm:flex-row sm:gap-0">
+        <div className="flex flex-col justify-between items-center py-2 px-4  rounded-lg gap-3 md:flex-row md:gap-0">
           <div>
             <h3 className="font-semibold text-xl p-1 pb-0 text-center sm:text-left">
               Személyes adatok
@@ -31,41 +41,60 @@ const JobseekerProfile = (): ReactElement => {
           </div>
           {!isModifying ? (
             <div className="flex flex-col items-center gap-2 justify-center sm:flex-row sm:gap-1">
-              <button
-                onClick={() => {
-                  dispatch(toggleModifying());
-                }}
-                className="border bg-sky-500 cursor-pointer w-52 h-12 rounded-lg hover:bg-sky-600 transition-all text-white shadow-lg sm:w-36 md:w-52"
-              >
-                Tapasztalatok szerkesztése
-              </button>
-              <button
-                onClick={() => {
-                  deleteAllExperiences(token);
-                }}
-                className="border bg-red-500 cursor-pointer w-44 h-12 rounded-lg hover:bg-red-600 transition-all text-white shadow-lg sm:w-28 md:w-44"
-              >
-                Tapasztalatok törlése
-              </button>
+              {experiences?.data.length === 0 ? (
+                <JobseekerButton
+                  title="Tapasztalat hozzáadása"
+                  w="w-52"
+                  h="h-12"
+                  color="bg-emerald-500"
+                  hoverColor="bg-emerald-600"
+                  func={openModal}
+                  func2={creatingOn}
+                  mdw="md:w-52"
+                />
+              ) : (
+                <JobseekerButton
+                  title="Tapasztalatok szerkesztése"
+                  w="w-52"
+                  h="h-12"
+                  color="bg-sky-500"
+                  hoverColor="bg-sky-600"
+                  func={modifyingOn}
+                  mdw="md:w-52"
+                />
+              )}
             </div>
           ) : (
-            <div className="flex flex-col items-center gap-2 justify-center sm:flex-row sm:gap-1">
-              <button
-                onClick={() => {
-                  dispatch(toggleModifying());
-                }}
-                className="border bg-emerald-500 cursor-pointer w-32 h-12 rounded-lg hover:bg-emerald-600 transition-all text-white shadow-lg"
-              >
-                Új tapasztalat
-              </button>
-              <button
-                onClick={() => {
-                  dispatch(toggleModifying());
-                }}
-                className="border bg-sky-500 cursor-pointer w-32 h-12 rounded-lg hover:bg-sky-600 transition-all text-white shadow-lg"
-              >
-                Vissza
-              </button>
+            <div className="flex flex-col items-center gap-2 justify-center md:flex-row md:gap-1">
+              <JobseekerButton
+                title="Tapasztalat hozzáadása"
+                w="w-52"
+                h="h-12"
+                color="bg-emerald-500"
+                hoverColor="bg-emerald-600"
+                func={openModal}
+                func2={creatingOn}
+                mdw="md:w-32"
+              />
+              <JobseekerButton
+                title="Tapasztalatok törlése"
+                w="w-52"
+                h="h-12"
+                color="bg-red-500"
+                hoverColor="bg-red-600"
+                func={modifyingOff}
+                func3={() => deleteAllExperiences(token)}
+                mdw="md:w-32"
+              />
+              <JobseekerButton
+                title="Vissza"
+                w="w-32"
+                h="h-12"
+                color="bg-sky-500"
+                hoverColor="bg-sky-600"
+                func={modifyingOff}
+                mdw="md:w-20"
+              />
             </div>
           )}
         </div>
@@ -80,7 +109,7 @@ const JobseekerProfile = (): ReactElement => {
 
         <JobseekerExperience />
 
-        {isSelected && <JobseekerExperienceModal />}
+        {isModalOpen && <JobseekerExperienceModal />}
       </div>
     </div>
   );

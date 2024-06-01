@@ -1,26 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { JobType } from "./jobsApi";
-
-type UpdateType = {
-  name: string;
-  value: number | string | boolean;
-};
-
-type KeyType = {
-  [key: string]: string | boolean | number;
-};
-
-type FilteredType = {
-  isFiltered: boolean;
-};
-
-type JobsState = {
-  data: {
-    search: Partial<JobType>;
-    filter: Partial<JobType> & KeyType & FilteredType;
-    advertisement: Partial<JobType> & KeyType;
-  };
-};
+import type { JobsState, JobType } from "../../types/jobsTypes";
+import type { UpdateType } from "../../types/userTypes";
 
 const initialState: JobsState = {
   data: {

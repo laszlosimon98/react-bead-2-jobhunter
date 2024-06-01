@@ -1,27 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-type UpdateType = {
-  name: string;
-  value: string;
-};
-
-export type ExperienceType = {
-  id: number;
-  title: string;
-  company: string;
-  interval: string;
-};
-
-type ExperienceState = {
-  [key: string]: string | boolean | ExperienceType;
-  isModifying: boolean;
-  isSelected: boolean;
-  value: ExperienceType;
-};
+import type { UpdateType } from "../../types/updateType";
+import type {
+  ExperienceState,
+  ExperienceType,
+} from "../../types/experiencesType";
 
 const initialState: ExperienceState = {
   isModifying: false,
-  isSelected: false,
+  isModalOpen: false,
+  isCreating: false,
   value: {
     id: 0,
     company: "",
@@ -34,11 +21,23 @@ const experiencesSlice = createSlice({
   name: "experiences",
   initialState,
   reducers: {
-    toggleModifying: (state) => {
-      state.isModifying = !state.isModifying;
+    openModal: (state) => {
+      state.isModalOpen = true;
     },
-    toggleSelected: (state) => {
-      state.isSelected = !state.isSelected;
+    closeModal: (state) => {
+      state.isModalOpen = false;
+    },
+    creatingOn: (state) => {
+      state.isCreating = true;
+    },
+    creatingOff: (state) => {
+      state.isCreating = false;
+    },
+    modifyingOn: (state) => {
+      state.isModifying = true;
+    },
+    modifyingOff: (state) => {
+      state.isModifying = false;
     },
     setValue: (state, action: PayloadAction<ExperienceType>) => {
       state.value = { ...action.payload };
@@ -49,10 +48,24 @@ const experiencesSlice = createSlice({
         [action.payload.name]: action.payload.value,
       };
     },
+    setFormEmpty: (state) => {
+      state.isModalOpen = false;
+      state.isCreating = false;
+      state.value = { ...initialState.value };
+    },
   },
 });
 
-export const { toggleModifying, setValue, toggleSelected, updateValue } =
-  experiencesSlice.actions;
+export const {
+  modifyingOff,
+  modifyingOn,
+  setValue,
+  updateValue,
+  openModal,
+  closeModal,
+  setFormEmpty,
+  creatingOff,
+  creatingOn,
+} = experiencesSlice.actions;
 
 export default experiencesSlice.reducer;

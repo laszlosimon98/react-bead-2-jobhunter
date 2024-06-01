@@ -1,34 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-type UpdateType = {
-  name: string;
-  value: number | string;
-};
-
-type AuthState = {
-  data: {
-    login: {
-      email: string;
-      password: string;
-    };
-    register: {
-      [key: string]: string | undefined;
-      fullname: string;
-      email: string;
-      password: string;
-      password_again: string;
-      role: "jobseeker" | "company";
-      experiences?: string;
-    };
-    errors: {
-      [key: string]: string | undefined;
-      email?: string;
-      password?: string;
-      fullname?: string;
-      passwordMatch?: string;
-    };
-  };
-};
+import type { AuthState } from "../../types/userTypes";
+import type { UpdateType } from "../../types/updateType";
 
 const initialState: AuthState = {
   data: {

@@ -1,29 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { UserType } from "../users/usersApi";
+import type {
+  GetExperiencesType,
+  ParamExperienceType,
+  ReturnedExperienceType,
+} from "../../types/experiencesType";
 
 const baseUrl = "http://localhost:3030";
-
-type ExperienceType = {
-  id: number;
-  company: string;
-  title: string;
-  interval: string;
-  userId: number;
-  user: UserType;
-};
-
-type GetExperiencesType = {
-  total: number;
-  skip: number;
-  limit: number;
-  data: ExperienceType[];
-};
-
-export type ParamExperienceType = {
-  company: string;
-  title: string;
-  interval: string;
-};
 
 export const experiencesApi = createApi({
   reducerPath: "experiencesApi",
@@ -40,7 +22,7 @@ export const experiencesApi = createApi({
       providesTags: ["Experiences"],
     }),
     addExperience: builder.mutation<
-      ExperienceType,
+      ReturnedExperienceType,
       ParamExperienceType & { token: string }
     >({
       query: ({ token, ...patch }) => ({
@@ -54,7 +36,7 @@ export const experiencesApi = createApi({
       invalidatesTags: ["Experiences"],
     }),
     addExperiences: builder.mutation<
-      ExperienceType[],
+      ReturnedExperienceType[],
       { body: ParamExperienceType[] } & { token: string }
     >({
       query: ({ token, body }) => ({
@@ -68,7 +50,7 @@ export const experiencesApi = createApi({
       invalidatesTags: ["Experiences"],
     }),
     modifyExperience: builder.mutation<
-      ExperienceType,
+      ReturnedExperienceType,
       { id: number; token: string } & ParamExperienceType
     >({
       query: ({ id, token, ...patch }) => ({
@@ -82,7 +64,7 @@ export const experiencesApi = createApi({
       invalidatesTags: ["Experiences"],
     }),
     deleteExperience: builder.mutation<
-      ExperienceType,
+      ReturnedExperienceType,
       { id: number; token: string }
     >({
       query: ({ id, token }) => ({
@@ -94,7 +76,7 @@ export const experiencesApi = createApi({
       }),
       invalidatesTags: ["Experiences"],
     }),
-    deleteAllExperiences: builder.mutation<ExperienceType, string>({
+    deleteAllExperiences: builder.mutation<ReturnedExperienceType, string>({
       query: (token) => ({
         url: `experiences`,
         method: "DELETE",

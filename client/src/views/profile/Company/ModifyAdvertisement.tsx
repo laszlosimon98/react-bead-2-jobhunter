@@ -9,6 +9,7 @@ import {
   useModifyJobMutation,
 } from "../../../services/jobs/jobsApi";
 import { setJob } from "../../../services/jobs/jobsSlice";
+import Loading from "../../components/Loading";
 
 const ModifyAdvertisement = (): ReactElement => {
   const navigate = useNavigate();
@@ -70,10 +71,9 @@ const ModifyAdvertisement = (): ReactElement => {
     navigate("/profile");
   };
 
-  if (isLoading) return <div>Loading...</div>;
-
   return (
     <>
+      {isLoading && <Loading />}
       <PageTitle>{data?.company}</PageTitle>
 
       <div className="pt-10">

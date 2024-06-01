@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { useCookies } from "react-cookie";
-import { useGetUserByIdQuery } from "../../../services/users/usersApi";
+import { useGetUserByIdQuery } from "../../../../services/users/usersApi";
 
 const JobseekerTable = (): ReactElement => {
   const [cookies] = useCookies(["access_token"]);

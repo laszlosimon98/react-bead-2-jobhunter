@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { LoginResultType } from "../services/users/usersApi";
+import type { LoginResultType } from "../types/userTypes";
 
 type ResponseType = {
   data: LoginResultType;
@@ -19,6 +19,10 @@ export const translateType = (type: string) => {
 };
 
 export const formatNumber = (num: number) => {
+  if (num.toString().length <= 3) {
+    return num;
+  }
+
   if (num.toString().length < 7) {
     return num
       .toString()

@@ -4,15 +4,11 @@ import JobLists from "../jobs/JobLists";
 import PageTitle from "./PageTitle";
 import JobDetailModal from "../jobs/JobDetailModal";
 import { useAppSelector } from "../../hooks/reduxHooks";
-import { useCookies } from "react-cookie";
 
 const Home = (): ReactElement => {
   const isModalVisible = useAppSelector(
     (state) => state.visibility.isModalVisible
   );
-
-  const [cookie] = useCookies(["access_token"]);
-  console.log(cookie.access_token);
 
   return (
     <>
