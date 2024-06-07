@@ -1,10 +1,11 @@
 import { ReactElement } from "react";
-import HomeOffice from "./HomeOffice";
+import HomeOffice from "./components/HomeOffice";
 import { Link } from "react-router-dom";
 import { formatNumber, translateType } from "../../utils/util";
 import { useAppDispatch } from "../../hooks/reduxHooks";
-import type { JobType } from "../../types/jobsTypes";
 import { jobModalOn } from "../../services/utils/visibilitySlice";
+
+import type { JobType } from "../../types/jobsTypes";
 
 type JobTableProps = {
   job: JobType;
@@ -30,7 +31,7 @@ const Job = ({ job }: JobTableProps): ReactElement => {
         >
           {job.homeOffice ? <HomeOffice /> : ""}
 
-          <div className="flex flex-col justify-end items-end mr-2 w-[8rem]">
+          <div className="flex flex-col justify-end items-end mr-2 w-[10rem]">
             <p className="font-semibold">
               {formatNumber(job.salaryFrom)}-{formatNumber(job.salaryTo)} Ft
             </p>

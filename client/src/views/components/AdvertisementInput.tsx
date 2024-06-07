@@ -1,9 +1,6 @@
-import { ChangeEvent, ReactElement, useEffect } from "react";
+import { ChangeEvent, ReactElement } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { setAdvertisement, setJob } from "../../services/jobs/jobsSlice";
-import { useParams } from "react-router-dom";
-import { useGetJobByIdWithAuthQuery } from "../../services/jobs/jobsApi";
-import { useCookies } from "react-cookie";
+import { setAdvertisement } from "../../services/jobs/jobsSlice";
 
 type InputProps = {
   title: string;

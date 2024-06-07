@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import MenuItem from "./MenuItem";
 import { useCookies } from "react-cookie";
-import { useAppDispatch } from "../../hooks/reduxHooks";
-import { setFormEmpty } from "../../services/jobs/jobsSlice";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
+import { setFormEmpty } from "../../../services/jobs/jobsSlice";
+import MenuItem from "./MenuItem";
 
 const CompanyMenu = (): ReactElement => {
   const items = [

@@ -5,7 +5,7 @@ import {
   useGetJobsQuery,
 } from "../../services/jobs/jobsApi";
 import { useAppSelector } from "../../hooks/reduxHooks";
-import JobDetailModal from "./JobDetailModal";
+import JobDetailModal from "./components/JobDetailModal";
 
 const JobLists = (): ReactElement => {
   const search = useAppSelector((state) => state.jobs.data.search);

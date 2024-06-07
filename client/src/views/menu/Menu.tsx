@@ -1,9 +1,9 @@
 import { ReactElement, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LoggedOutMenu from "./LoggedOutMenu";
-import JobSeekerMenu from "./JobseekerMenu";
-import CompanyMenu from "./CompanyMenu";
-import DropdownMenu from "./DropdownMenu";
+import LoggedOutMenu from "./components/LoggedOutMenu";
+import JobSeekerMenu from "./components/JobseekerMenu";
+import CompanyMenu from "./components/CompanyMenu";
+import DropdownMenu from "./components/DropdownMenu";
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { dropDownToggle } from "../../services/utils/visibilitySlice";
 import { useCookies } from "react-cookie";
@@ -19,19 +19,17 @@ const Menu = (): ReactElement => {
   const token = cookies?.access_token?.token;
   const userId = cookies?.access_token?.userId;
 
-  const { data: user, error } = useGetUserByIdQuery(
+  const { data: user, isError } = useGetUserByIdQuery(
     { id: userId, token },
     { skip: !userId }
   );
 
-  const message = error?.data.data.name;
-
   useEffect(() => {
-    if (message === "TokenExpiredError") {
+    if (isError) {
       removeCookie("access_token", { path: "/" });
       navigate("/");
     }
-  }, [message]);
+  }, [isError]);
 
   return (
     <header className="bg-sky-700 flex items-center justify-between px-5 h-16 w-full">

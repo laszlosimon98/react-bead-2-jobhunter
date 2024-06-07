@@ -2,10 +2,11 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
 import Home from "./home/Home";
 import Profile from "./profile/Profile";
-import CreateAdvertisement from "./profile/Company/CreateAdvertisement";
-import ModifyAdvertisement from "./profile/Company/ModifyAdvertisement";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import CreateAdvertisement from "./profile/Company/components/CreateAdvertisement";
+import ModifyAdvertisement from "./profile/Company/components/ModifyAdvertisement";
+import CompanyProfile from "./profile/Company/CompanyProfile";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="jobs">
             <Route path=":jobId" element={<Profile />} />
           </Route>
+          <Route path=":jobId" element={<CompanyProfile />} />
         </Route>
 
         <Route path="create" element={<CreateAdvertisement />} />

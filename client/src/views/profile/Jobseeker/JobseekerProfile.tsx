@@ -17,7 +17,7 @@ import JobseekerExperience from "./components/JobseekerExperience";
 import { useGetJobsForAnApplicantQuery } from "../../../services/applicants/applicantsApi";
 import Job from "../../jobs/Job";
 import Loading from "../../components/Loading";
-import JobDetailModal from "../../jobs/JobDetailModal";
+import JobDetailModal from "../../jobs/components/JobDetailModal";
 import { experienceModalOn } from "../../../services/utils/visibilitySlice";
 
 const JobseekerProfile = (): ReactElement => {

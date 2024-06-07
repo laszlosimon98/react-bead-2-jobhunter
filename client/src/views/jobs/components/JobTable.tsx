@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
-import { formatNumber, translateType } from "../../utils/util";
-import { JobType } from "../../services/jobs/jobsApi";
+import { formatNumber, translateType } from "../../../utils/util";
+import type { JobType } from "../../../types/jobsTypes";
 
 type JobTableProps = {
   job: JobType;

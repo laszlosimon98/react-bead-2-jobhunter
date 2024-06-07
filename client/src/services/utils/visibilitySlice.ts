@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 type VisibilityState = {
   isJobModalOpen: boolean;
   isExperienceModalOpen: boolean;
+  isApplicantsModalOpen: boolean;
   isFilterVisible: boolean;
   isDropdownVisible: boolean;
 };
@@ -10,6 +11,7 @@ type VisibilityState = {
 const initialState: VisibilityState = {
   isJobModalOpen: false,
   isExperienceModalOpen: false,
+  isApplicantsModalOpen: false,
   isFilterVisible: false,
   isDropdownVisible: false,
 };
@@ -30,6 +32,12 @@ export const visibilitySlice = createSlice({
     experienceModalOff: (state) => {
       state.isExperienceModalOpen = false;
     },
+    applicantsModalOn: (state) => {
+      state.isApplicantsModalOpen = true;
+    },
+    applicantsModalOff: (state) => {
+      state.isApplicantsModalOpen = false;
+    },
     dropDownToggle: (state) => {
       state.isDropdownVisible = !state.isDropdownVisible;
     },
@@ -47,6 +55,8 @@ export const {
   jobModalOff,
   experienceModalOn,
   experienceModalOff,
+  applicantsModalOn,
+  applicantsModalOff,
   dropDownToggle,
   filterToggle,
   filterClose,

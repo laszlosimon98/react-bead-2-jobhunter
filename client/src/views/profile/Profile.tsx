@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import PageTitle from "../home/PageTitle";
+import PageTitle from "../home/components/PageTitle";
 import CompanyProfile from "./Company/CompanyProfile";
 import JobseekerProfile from "./Jobseeker/JobseekerProfile";
 import { useCookies } from "react-cookie";

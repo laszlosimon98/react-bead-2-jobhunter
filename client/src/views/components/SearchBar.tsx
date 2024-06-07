@@ -1,5 +1,5 @@
 import { ChangeEvent, ReactElement } from "react";
-import FilterDropdown from "../home/FilterDropdown";
+import FilterDropdown from "../home/components/FilterDropdown";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import {
   filterClose,

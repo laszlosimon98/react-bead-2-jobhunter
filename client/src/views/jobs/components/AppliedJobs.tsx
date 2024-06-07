@@ -5,7 +5,7 @@ import {
   useApplyJobMutation,
   useGetJobsForAnApplicantQuery,
   useRemoveApplicationMutation,
-} from "../../services/applicants/applicantsApi";
+} from "../../../services/applicants/applicantsApi";
 
 const AppliedJobs = (): ReactElement => {
   const [cookies] = useCookies(["access_token"]);

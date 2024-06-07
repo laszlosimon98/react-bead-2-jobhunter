@@ -1,15 +1,15 @@
 import { ReactElement, useEffect } from "react";
 import AdvertisementForm from "./AdvertisementForm";
 import { useNavigate, useParams } from "react-router-dom";
-import PageTitle from "../../home/PageTitle";
 import { useCookies } from "react-cookie";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/reduxHooks";
 import {
   useGetJobByIdWithAuthQuery,
   useModifyJobMutation,
-} from "../../../services/jobs/jobsApi";
-import { setJob } from "../../../services/jobs/jobsSlice";
-import Loading from "../../components/Loading";
+} from "../../../../services/jobs/jobsApi";
+import { setJob } from "../../../../services/jobs/jobsSlice";
+import Loading from "../../../components/Loading";
+import PageTitle from "../../../home/components/PageTitle";
 
 const ModifyAdvertisement = (): ReactElement => {
   const navigate = useNavigate();

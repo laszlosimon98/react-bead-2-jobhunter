@@ -1,26 +1,27 @@
 import { ReactElement, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { formatNumber, translateType } from "../../utils/util";
+import { formatNumber, translateType } from "../../../utils/util";
 import HomeOffice from "./HomeOffice";
 import JobTable from "./JobTable";
-import { useAppDispatch } from "../../hooks/reduxHooks";
-import { useGetJobByIdQuery } from "../../services/jobs/jobsApi";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
+import { useGetJobByIdQuery } from "../../../services/jobs/jobsApi";
 import { useCookies } from "react-cookie";
-import { useGetUserByIdQuery } from "../../services/users/usersApi";
-import Loading from "../components/Loading";
-import { jobModalOff } from "../../services/utils/visibilitySlice";
+import { useGetUserByIdQuery } from "../../../services/users/usersApi";
+import Loading from "../../components/Loading";
+import { jobModalOff } from "../../../services/utils/visibilitySlice";
 import AppliedJobs from "./AppliedJobs";
 
 const JobDetailModal = (): ReactElement => {
   const location = useLocation();
-  const [isCloseAble, setIsCloseAble] = useState<boolean>(true);
-
+  const { jobId } = useParams();
   const [cookies] = useCookies(["access_token"]);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [isCloseAble, setIsCloseAble] = useState<boolean>(true);
 
   const token = cookies?.access_token?.token;
   const userId = cookies?.access_token?.userId;
 
-  const { jobId } = useParams();
   const { data: job, isLoading: isJobsLoading } = useGetJobByIdQuery(
     parseInt(jobId as string),
     { skip: jobId === undefined }
@@ -30,9 +31,6 @@ const JobDetailModal = (): ReactElement => {
     { id: userId, token },
     { skip: !userId }
   );
-
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const handleClose = () => {
     let path = "/";

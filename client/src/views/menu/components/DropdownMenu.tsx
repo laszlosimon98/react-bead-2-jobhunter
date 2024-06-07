@@ -2,9 +2,9 @@ import { ReactElement } from "react";
 import LoggedOutMenu from "./LoggedOutMenu";
 import JobSeekerMenu from "./JobseekerMenu";
 import CompanyMenu from "./CompanyMenu";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppSelector } from "../../../hooks/reduxHooks";
 import { useCookies } from "react-cookie";
-import { useGetUserByIdQuery } from "../../services/users/usersApi";
+import { useGetUserByIdQuery } from "../../../services/users/usersApi";
 
 const DropdownMenu = (): ReactElement => {
   const isDropdownVisible = useAppSelector(

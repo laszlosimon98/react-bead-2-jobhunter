@@ -7,18 +7,25 @@ import {
   useGetJobByUserIdQuery,
 } from "../../../services/jobs/jobsApi";
 import { useCookies } from "react-cookie";
-import { useAppDispatch } from "../../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import { setEmpty } from "../../../services/jobs/jobsSlice";
 import Loading from "../../components/Loading";
+import ApplicantsModel from "./components/ApplicantsModel";
+import { applicantsModalOn } from "../../../services/utils/visibilitySlice";
 
 const CompanyProfile = (): ReactElement => {
   const [cookies] = useCookies(["access_token"]);
+  const dispatch = useAppDispatch();
+
   const token = cookies?.access_token?.token;
   const userId = cookies?.access_token?.userId;
 
-  const dispatch = useAppDispatch();
+  const isApplicantsModelOpen = useAppSelector(
+    (state) => state.visibility.isApplicantsModalOpen
+  );
 
   const { data: jobs, isLoading } = useGetJobByUserIdQuery(userId);
+
   const [deleteJob] = useDeleteJobMutation();
   const [deleteAllJob] = useDeleteAllJobMutation();
 
@@ -68,12 +75,21 @@ const CompanyProfile = (): ReactElement => {
               </div>
 
               <div className="flex justify-center gap-2 items-center lg:w-[22rem] lg:justify-between lg:gap-0">
-                <button className="border bg-emerald-500 cursor-pointer w-28 h-12 rounded-lg hover:bg-emerald-600 transition-all text-white shadow-md">
-                  <Link to={`/modify/${job.id}`}>Szerkesztés</Link>
-                </button>
-                <button className="border bg-sky-500 cursor-pointer w-28 h-12 rounded-lg hover:bg-sky-600 transition-all text-white shadow-md">
-                  Megtekintés
-                </button>
+                <Link to={`/modify/${job.id}`}>
+                  <button className="border bg-emerald-500 cursor-pointer w-28 h-12 rounded-lg hover:bg-emerald-600 transition-all text-white shadow-md">
+                    Szerkesztés
+                  </button>
+                </Link>
+
+                <Link to={`/profile/${job.id}`}>
+                  <button
+                    onClick={() => dispatch(applicantsModalOn())}
+                    className="border bg-sky-500 cursor-pointer w-28 h-12 rounded-lg hover:bg-sky-600 transition-all text-white shadow-md"
+                  >
+                    Megtekintés
+                  </button>
+                </Link>
+
                 <button
                   onClick={() => handleDelete(job.id)}
                   className="border bg-red-500 cursor-pointer w-28 h-12 rounded-lg hover:bg-red-600 transition-all text-white shadow-md"
@@ -84,6 +100,7 @@ const CompanyProfile = (): ReactElement => {
             </div>
           ))}
         </div>
+        {isApplicantsModelOpen && <ApplicantsModel />}
       </div>
     </>
   );

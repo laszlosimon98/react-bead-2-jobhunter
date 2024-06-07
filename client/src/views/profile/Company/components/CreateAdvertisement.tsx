@@ -1,10 +1,10 @@
 import { ReactElement } from "react";
 import AdvertisementForm from "./AdvertisementForm";
 import { useNavigate } from "react-router-dom";
-import PageTitle from "../../home/PageTitle";
-import { useAppSelector } from "../../../hooks/reduxHooks";
-import { useCreateJobMutation } from "../../../services/jobs/jobsApi";
 import { useCookies } from "react-cookie";
+import { useAppSelector } from "../../../../hooks/reduxHooks";
+import { useCreateJobMutation } from "../../../../services/jobs/jobsApi";
+import PageTitle from "../../../home/components/PageTitle";
 
 const CreateAdvertisement = (): ReactElement => {
   const navigate = useNavigate();
