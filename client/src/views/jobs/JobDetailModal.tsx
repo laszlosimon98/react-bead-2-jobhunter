@@ -1,25 +1,30 @@
-import { ReactElement } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { ReactElement, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { formatNumber, translateType } from "../../utils/util";
 import HomeOffice from "./HomeOffice";
 import JobTable from "./JobTable";
 import { useAppDispatch } from "../../hooks/reduxHooks";
-import { modalOff } from "../../services/utils/visibilitySlice";
 import { useGetJobByIdQuery } from "../../services/jobs/jobsApi";
 import { useCookies } from "react-cookie";
 import { useGetUserByIdQuery } from "../../services/users/usersApi";
 import Loading from "../components/Loading";
+import { jobModalOff } from "../../services/utils/visibilitySlice";
+import AppliedJobs from "./AppliedJobs";
 
 const JobDetailModal = (): ReactElement => {
-  const { jobId } = useParams();
-  const { data: job, isLoading } = useGetJobByIdQuery(
-    parseInt(jobId as string)
-  );
+  const location = useLocation();
+  const [isCloseAble, setIsCloseAble] = useState<boolean>(true);
 
   const [cookies] = useCookies(["access_token"]);
 
   const token = cookies?.access_token?.token;
   const userId = cookies?.access_token?.userId;
+
+  const { jobId } = useParams();
+  const { data: job, isLoading: isJobsLoading } = useGetJobByIdQuery(
+    parseInt(jobId as string),
+    { skip: jobId === undefined }
+  );
 
   const { data: user } = useGetUserByIdQuery(
     { id: userId, token },
@@ -30,8 +35,15 @@ const JobDetailModal = (): ReactElement => {
   const navigate = useNavigate();
 
   const handleClose = () => {
-    dispatch(modalOff());
-    navigate("/");
+    let path = "/";
+    if (location.pathname.includes("profile")) {
+      path = "/profile";
+    }
+
+    if (isCloseAble) {
+      dispatch(jobModalOff());
+      navigate(path);
+    }
   };
 
   return (
@@ -39,9 +51,13 @@ const JobDetailModal = (): ReactElement => {
       className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50"
       onClick={handleClose}
     >
-      <div className="absolute top-16 left-1/2 -translate-x-1/2 pb-4">
-        <div className="border w-jobModal h-[29rem] py-3 shadow-lg bg-white rounded-lg overflow-y-scroll">
-          {isLoading ? (
+      <div className="absolute top-16 left-1/2 -translate-x-1/2 pb-4 ">
+        <div
+          onMouseEnter={() => setIsCloseAble(false)}
+          onMouseLeave={() => setIsCloseAble(true)}
+          className="border w-jobModal h-[29rem] py-3 shadow-lg bg-white rounded-lg overflow-y-scroll"
+        >
+          {isJobsLoading ? (
             <Loading />
           ) : (
             <>
@@ -72,11 +88,8 @@ const JobDetailModal = (): ReactElement => {
                       Megtetszett a lehetőség? Jelentkezz!
                     </p>
                   </div>
-                  {user && user.role === "jobseeker" && (
-                    <button className="bg-sky-600 w-32 h-12 text-xl rounded-lg text-white cursor-pointer hover:bg-sky-500 transition-all ">
-                      Jelentkezés
-                    </button>
-                  )}
+
+                  {user && user.role === "jobseeker" && <AppliedJobs />}
                 </div>
 
                 <JobTable job={job} />

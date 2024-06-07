@@ -17,7 +17,11 @@ function App() {
           <Route path=":jobId" element={<Home />} />
         </Route>
 
-        <Route path="profile" element={<Profile />} />
+        <Route path="profile" element={<Profile />}>
+          <Route path="jobs">
+            <Route path=":jobId" element={<Profile />} />
+          </Route>
+        </Route>
 
         <Route path="create" element={<CreateAdvertisement />} />
 

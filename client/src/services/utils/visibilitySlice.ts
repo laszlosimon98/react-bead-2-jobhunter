@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type VisibilityState = {
-  isModalVisible: boolean;
+  isJobModalOpen: boolean;
+  isExperienceModalOpen: boolean;
   isFilterVisible: boolean;
   isDropdownVisible: boolean;
 };
 
 const initialState: VisibilityState = {
-  isModalVisible: false,
+  isJobModalOpen: false,
+  isExperienceModalOpen: false,
   isFilterVisible: false,
   isDropdownVisible: false,
 };
@@ -16,11 +18,17 @@ export const visibilitySlice = createSlice({
   name: "visibility",
   initialState,
   reducers: {
-    modalOn: (state) => {
-      state.isModalVisible = true;
+    jobModalOn: (state) => {
+      state.isJobModalOpen = true;
     },
-    modalOff: (state) => {
-      state.isModalVisible = false;
+    jobModalOff: (state) => {
+      state.isJobModalOpen = false;
+    },
+    experienceModalOn: (state) => {
+      state.isExperienceModalOpen = true;
+    },
+    experienceModalOff: (state) => {
+      state.isExperienceModalOpen = false;
     },
     dropDownToggle: (state) => {
       state.isDropdownVisible = !state.isDropdownVisible;
@@ -34,7 +42,14 @@ export const visibilitySlice = createSlice({
   },
 });
 
-export const { modalOn, modalOff, dropDownToggle, filterToggle, filterClose } =
-  visibilitySlice.actions;
+export const {
+  jobModalOn,
+  jobModalOff,
+  experienceModalOn,
+  experienceModalOff,
+  dropDownToggle,
+  filterToggle,
+  filterClose,
+} = visibilitySlice.actions;
 
 export default visibilitySlice.reducer;

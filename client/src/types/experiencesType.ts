@@ -32,7 +32,6 @@ export type ExperienceType = {
 export type ExperienceState = {
   [key: string]: string | boolean | ExperienceType;
   isModifying: boolean;
-  isModalOpen: boolean;
   isCreating: boolean;
   value: ExperienceType;
 };

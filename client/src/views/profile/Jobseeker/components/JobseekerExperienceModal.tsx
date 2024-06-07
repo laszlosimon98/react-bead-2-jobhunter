@@ -8,10 +8,10 @@ import {
 } from "../../../../services/experiences/experiencesApi";
 import Loading from "../../../components/Loading";
 import {
-  closeModal,
   creatingOff,
   setFormEmpty,
 } from "../../../../services/experiences/experiencesSlice";
+import { experienceModalOff } from "../../../../services/utils/visibilitySlice";
 
 const JobseekerExperienceModal = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -25,7 +25,7 @@ const JobseekerExperienceModal = (): ReactElement => {
   const handleModify = () => {
     modifyExperience({ token, ...value });
 
-    dispatch(closeModal());
+    dispatch(experienceModalOff());
     dispatch(setFormEmpty());
   };
 
@@ -33,7 +33,7 @@ const JobseekerExperienceModal = (): ReactElement => {
     const { company, title, interval } = value;
     addExperience({ token, company, title, interval });
 
-    dispatch(closeModal());
+    dispatch(experienceModalOff());
     dispatch(setFormEmpty());
     dispatch(creatingOff());
   };
@@ -64,7 +64,7 @@ const JobseekerExperienceModal = (): ReactElement => {
                 </button>
                 <button
                   onClick={() => {
-                    dispatch(closeModal());
+                    dispatch(experienceModalOff());
                     dispatch(creatingOff());
                     dispatch(setFormEmpty());
                   }}

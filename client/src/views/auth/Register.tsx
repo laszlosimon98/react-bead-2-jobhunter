@@ -11,12 +11,10 @@ import {
   useRegisterUserMutation,
 } from "../../services/users/usersApi";
 import { useNavigate } from "react-router-dom";
-import {
-  ParamExperienceType,
-  useAddExperiencesMutation,
-} from "../../services/experiences/experiencesApi";
+import { useAddExperiencesMutation } from "../../services/experiences/experiencesApi";
 import { saveCookie } from "../../utils/util";
 import { useCookies } from "react-cookie";
+import type { ParamExperienceType } from "../../types/experiencesType";
 
 const Register = (): ReactElement => {
   const data = useAppSelector((state) => state.users.data.register);

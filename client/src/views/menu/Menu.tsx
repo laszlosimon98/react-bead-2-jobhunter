@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
-import { Link } from "react-router-dom";
+import { ReactElement, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import LoggedOutMenu from "./LoggedOutMenu";
 import JobSeekerMenu from "./JobseekerMenu";
 import CompanyMenu from "./CompanyMenu";
@@ -11,16 +11,27 @@ import { useGetUserByIdQuery } from "../../services/users/usersApi";
 
 const Menu = (): ReactElement => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [, , removeCookie] = useCookies(["access_token"]);
 
   const [cookies] = useCookies(["access_token"]);
 
   const token = cookies?.access_token?.token;
   const userId = cookies?.access_token?.userId;
 
-  const { data: user } = useGetUserByIdQuery(
+  const { data: user, error } = useGetUserByIdQuery(
     { id: userId, token },
     { skip: !userId }
   );
+
+  const message = error?.data.data.name;
+
+  useEffect(() => {
+    if (message === "TokenExpiredError") {
+      removeCookie("access_token", { path: "/" });
+      navigate("/");
+    }
+  }, [message]);
 
   return (
     <header className="bg-sky-700 flex items-center justify-between px-5 h-16 w-full">

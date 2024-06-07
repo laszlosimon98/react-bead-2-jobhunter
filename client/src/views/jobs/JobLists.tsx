@@ -5,6 +5,7 @@ import {
   useGetJobsQuery,
 } from "../../services/jobs/jobsApi";
 import { useAppSelector } from "../../hooks/reduxHooks";
+import JobDetailModal from "./JobDetailModal";
 
 const JobLists = (): ReactElement => {
   const search = useAppSelector((state) => state.jobs.data.search);
@@ -14,6 +15,10 @@ const JobLists = (): ReactElement => {
   const { data: filteredJobs } = useGetJobByCompanyNameQuery(search);
   const isFiltered = useAppSelector(
     (state) => state.jobs.data.filter.isFiltered
+  );
+
+  const isJobModalOpen = useAppSelector(
+    (state) => state.visibility.isJobModalOpen
   );
 
   return (
@@ -34,6 +39,7 @@ const JobLists = (): ReactElement => {
           </>
         )}
       </div>
+      {isJobModalOpen && <JobDetailModal />}
     </>
   );
 };

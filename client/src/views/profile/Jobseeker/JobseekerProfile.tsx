@@ -4,7 +4,6 @@ import {
   creatingOn,
   modifyingOff,
   modifyingOn,
-  openModal,
 } from "../../../services/experiences/experiencesSlice";
 import JobseekerExperienceModal from "./components/JobseekerExperienceModal";
 import {
@@ -15,17 +14,36 @@ import { useCookies } from "react-cookie";
 import JobseekerButton from "./components/JobseekerInput";
 import JobseekerTable from "./components/JobseekerTable";
 import JobseekerExperience from "./components/JobseekerExperience";
+import { useGetJobsForAnApplicantQuery } from "../../../services/applicants/applicantsApi";
+import Job from "../../jobs/Job";
+import Loading from "../../components/Loading";
+import JobDetailModal from "../../jobs/JobDetailModal";
+import { experienceModalOn } from "../../../services/utils/visibilitySlice";
 
 const JobseekerProfile = (): ReactElement => {
-  const { isModifying, isModalOpen } = useAppSelector(
-    (state) => state.experiences
+  const { isModifying } = useAppSelector((state) => state.experiences);
+
+  const { isJobModalOpen, isExperienceModalOpen } = useAppSelector(
+    (state) => state.visibility
   );
 
   const [cookie] = useCookies(["access_token"]);
   const token = cookie.access_token.token;
+  const userId = cookie.access_token.userId;
 
-  const { data: experiences } = useGetExperiencesQuery(token);
+  const { data: experiences, isLoading: isExperiencesLoading } =
+    useGetExperiencesQuery(token, { skip: token === undefined });
+  const { data: appliedJobs, isLoading: isJobsLoading } =
+    useGetJobsForAnApplicantQuery(
+      {
+        token,
+        userId,
+      },
+      { skip: userId === undefined }
+    );
   const [deleteAllExperiences] = useDeleteAllExperiencesMutation();
+
+  if (isExperiencesLoading || isJobsLoading) return <Loading />;
 
   return (
     <div className="pt-10">
@@ -48,7 +66,7 @@ const JobseekerProfile = (): ReactElement => {
                   h="h-12"
                   color="bg-emerald-500"
                   hoverColor="bg-emerald-600"
-                  func={openModal}
+                  func={experienceModalOn}
                   func2={creatingOn}
                   mdw="md:w-52"
                 />
@@ -72,7 +90,7 @@ const JobseekerProfile = (): ReactElement => {
                 h="h-12"
                 color="bg-emerald-500"
                 hoverColor="bg-emerald-600"
-                func={openModal}
+                func={experienceModalOn}
                 func2={creatingOn}
                 mdw="md:w-32"
               />
@@ -109,7 +127,16 @@ const JobseekerProfile = (): ReactElement => {
 
         <JobseekerExperience />
 
-        {isModalOpen && <JobseekerExperienceModal />}
+        <div className="flex justify-between items-center py-2 px-4 mt-5">
+          <h3 className="font-semibold text-xl p-1 pb-0">Jelentkezések</h3>
+        </div>
+
+        {appliedJobs?.map((applications, idx) => (
+          <Job key={idx} job={applications.job} />
+        ))}
+
+        {isExperienceModalOpen && <JobseekerExperienceModal />}
+        {isJobModalOpen && <JobDetailModal />}
       </div>
     </div>
   );

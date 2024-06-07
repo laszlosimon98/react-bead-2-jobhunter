@@ -7,11 +7,11 @@ import {
 } from "../../../../services/experiences/experiencesApi";
 import {
   modifyingOff,
-  openModal,
   setValue,
 } from "../../../../services/experiences/experiencesSlice";
 import type { ExperienceType } from "../../../../types/experiencesType";
 import Loading from "../../../components/Loading";
+import { experienceModalOn } from "../../../../services/utils/visibilitySlice";
 
 const JobseekerExperience = (): ReactElement => {
   const [cookie] = useCookies(["access_token"]);
@@ -25,7 +25,7 @@ const JobseekerExperience = (): ReactElement => {
   const handleModify = (experience: ExperienceType) => {
     const { id, company, title, interval } = experience;
     dispatch(setValue({ id, company, title, interval }));
-    dispatch(openModal());
+    dispatch(experienceModalOn());
   };
 
   return (

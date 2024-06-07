@@ -7,7 +7,6 @@ import type {
 
 const initialState: ExperienceState = {
   isModifying: false,
-  isModalOpen: false,
   isCreating: false,
   value: {
     id: 0,
@@ -21,12 +20,6 @@ const experiencesSlice = createSlice({
   name: "experiences",
   initialState,
   reducers: {
-    openModal: (state) => {
-      state.isModalOpen = true;
-    },
-    closeModal: (state) => {
-      state.isModalOpen = false;
-    },
     creatingOn: (state) => {
       state.isCreating = true;
     },
@@ -61,8 +54,6 @@ export const {
   modifyingOn,
   setValue,
   updateValue,
-  openModal,
-  closeModal,
   setFormEmpty,
   creatingOff,
   creatingOn,
