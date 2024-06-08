@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
-import SearchBar from "../components/SearchBar";
 import JobLists from "../jobs/JobLists";
 import PageTitle from "./components/PageTitle";
+import SearchBar from "./components/SearchBar";
 
 const Home = (): ReactElement => {
   return (

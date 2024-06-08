@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
-import Input from "../../components/Input";
-import Option from "../../components/Option";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
+import { useAppSelector, useAppDispatch } from "../../../hooks/reduxHooks";
 import { setFilter } from "../../../services/jobs/jobsSlice";
+import Input from "./Input";
+import Option from "./Option";
 
 const FilterDropdown = (): ReactElement => {
   const homeOffice = useAppSelector(

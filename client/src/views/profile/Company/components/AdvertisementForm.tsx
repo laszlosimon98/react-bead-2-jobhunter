@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
 import { useAppSelector, useAppDispatch } from "../../../../hooks/reduxHooks";
 import { setAdvertisement } from "../../../../services/jobs/jobsSlice";
-import AdvertisementInput from "../../../components/AdvertisementInput";
-import AdvertisementOption from "../../../components/AdvertisementOption";
-import TextArea from "../../../components/TextArea";
+import TextArea from "../../../home/components/TextArea";
+import AdvertisementInput from "./AdvertisementInput";
+import AdvertisementOption from "./AdvertisementOption";
 
 const AdvertisementForm = (): ReactElement => {
   const advertisement = useAppSelector(

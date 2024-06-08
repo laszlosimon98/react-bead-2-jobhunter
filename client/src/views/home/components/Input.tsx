@@ -1,6 +1,6 @@
-import { ChangeEvent, ReactElement } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { setFilter } from "../../services/jobs/jobsSlice";
+import { ReactElement, ChangeEvent } from "react";
+import { useAppSelector, useAppDispatch } from "../../../hooks/reduxHooks";
+import { setFilter } from "../../../services/jobs/jobsSlice";
 
 type InputProps = {
   title: string;
@@ -30,7 +30,10 @@ const Input = ({ title, type, name }: InputProps): ReactElement => {
           dispatch(
             setFilter({
               name: e.target.name,
-              value: e.target.value,
+              value:
+                e.target.type === "number"
+                  ? parseInt(e.target.value)
+                  : e.target.value,
             })
           )
         }

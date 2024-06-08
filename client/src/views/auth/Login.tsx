@@ -1,13 +1,13 @@
-import { ChangeEvent, ReactElement } from "react";
-import { useLoginUserMutation } from "../../services/users/usersApi";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import {
-  setError,
-  setFormEmpty,
-  setLoginForm,
-} from "../../services/users/usersSlice";
+import { ReactElement, ChangeEvent } from "react";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "../../hooks/reduxHooks";
+import { useLoginUserMutation } from "../../services/users/usersApi";
+import {
+  setLoginForm,
+  setFormEmpty,
+  setError,
+} from "../../services/users/usersSlice";
 import { saveCookie } from "../../utils/util";
 
 const Login = (): ReactElement => {

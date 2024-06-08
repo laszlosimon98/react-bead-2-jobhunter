@@ -1,6 +1,6 @@
 import { ChangeEvent, ReactElement } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { setAdvertisement } from "../../services/jobs/jobsSlice";
+import { useAppSelector, useAppDispatch } from "../../../../hooks/reduxHooks";
+import { setAdvertisement } from "../../../../services/jobs/jobsSlice";
 
 type InputProps = {
   title: string;

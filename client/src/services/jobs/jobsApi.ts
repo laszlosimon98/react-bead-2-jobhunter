@@ -36,9 +36,17 @@ export const jobsApi = createApi({
       query: (userId: number) => `jobs?userId=${userId}`,
       providesTags: ["Jobs"],
     }),
-    getJobByCompanyName: builder.query<GetJobsType, FilterType>({
+    getJobByCompanyName: builder.query<GetJobsType, string>({
+      query: (company) => `jobs?company[$like]=%${company}%`,
+      providesTags: ["Jobs"],
+    }),
+    getJobByFilter: builder.query<GetJobsType, FilterType>({
       query: ({ company, salaryFrom, salaryTo, type, city, homeOffice }) =>
-        `jobs?company[$like]=%${company}%&salaryFrom[$gt]=${salaryFrom}&salaryTo[$lt]=${salaryTo}&type=${type}&city=${city}&homeOffice=${homeOffice}`,
+        `jobs?company[$like]=%${company}%&salaryFrom[$gt]=${
+          (salaryFrom as number) - 1
+        }&salaryTo[$lt]=${
+          (salaryTo as number) + 1
+        }&type=${type}&city=${city}&homeOffice=${homeOffice}`,
       providesTags: ["Jobs"],
     }),
     createJob: builder.mutation<
@@ -98,6 +106,7 @@ export const {
   useGetJobByIdWithAuthQuery,
   useGetJobByUserIdQuery,
   useGetJobByCompanyNameQuery,
+  useGetJobByFilterQuery,
   useCreateJobMutation,
   useModifyJobMutation,
   useDeleteJobMutation,

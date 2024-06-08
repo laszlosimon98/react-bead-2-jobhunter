@@ -5,7 +5,11 @@ type ResponseType = {
   data: LoginResultType;
 };
 
-export const translateType = (type: string) => {
+const reverseString = (str: string): string => {
+  return str.split("").reverse().join("");
+};
+
+export const translateType = (type: string): string => {
   switch (type) {
     case "full-time":
       return "Teljes munkaidős";
@@ -18,25 +22,17 @@ export const translateType = (type: string) => {
   }
 };
 
-export const formatNumber = (num: number) => {
-  if (num.toString().length <= 3) {
-    return num;
-  }
+export const formatNumber = (num: number): string => {
+  let result = "";
+  const reversed = reverseString(num.toString());
+  const loop = Math.floor(num.toString().length / 3);
 
-  if (num.toString().length < 7) {
-    return num
-      .toString()
-      .slice(0, num.toString().length - 3)
-      .concat(".")
-      .concat(num.toString().slice(num.toString().length - 3));
-  } else {
-    return num
-      .toString()
-      .slice(0, 1)
-      .concat(".")
-      .concat(num.toString().slice(1, 2))
-      .concat(" M");
+  for (let i = 0; i < loop; ++i) {
+    result += reversed.slice(i * 3, i * 3 + 3).concat(".");
   }
+  result += reversed.slice(loop * 3, loop * 3 + 3);
+
+  return reverseString(result).replace(/^\./, "");
 };
 
 export const saveCookie = (response: ResponseType, setCookie: any) => {

@@ -1,16 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import type { JobsState, JobType } from "../../types/jobsTypes";
-import type { UpdateType } from "../../types/userTypes";
+import { UpdateType } from "../../types/updateType";
 
 const initialState: JobsState = {
   data: {
     search: {
       company: "",
-      salaryFrom: 0,
-      salaryTo: 2000000,
-      type: "full-time",
-      city: "Budapest",
-      homeOffice: false,
     },
     filter: {
       isFiltered: false,
@@ -49,9 +44,10 @@ const jobsSlice = createSlice({
         [action.payload.name]: action.payload.value,
       };
     },
-    setSearch: (state) => {
+    setSearch: (state, action: PayloadAction<UpdateType>) => {
       state.data.search = {
-        ...state.data.filter,
+        ...state.data.search,
+        [action.payload.name]: action.payload.value,
       };
     },
     setFiltered: (state) => {

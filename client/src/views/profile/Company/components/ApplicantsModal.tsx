@@ -6,7 +6,7 @@ import { useAppDispatch } from "../../../../hooks/reduxHooks";
 import { useGetApplicantsForAJobQuery } from "../../../../services/applicants/applicantsApi";
 import Loading from "../../../components/Loading";
 
-const ApplicantsModel = (): ReactElement => {
+const ApplicantsModal = (): ReactElement => {
   const location = useLocation();
   const { jobId } = useParams();
   const [cookies] = useCookies(["access_token"]);
@@ -36,8 +36,6 @@ const ApplicantsModel = (): ReactElement => {
 
   if (isApplicantsLoading) return <Loading />;
 
-  console.log(applicants);
-
   return (
     <div
       className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50"
@@ -52,7 +50,7 @@ const ApplicantsModel = (): ReactElement => {
           <h3 className="text-center text-2xl font-bold opacity-60 mt-3">
             Jelentkezők
           </h3>
-          <table className="w-table mx-auto mt-6 table-auto text-center">
+          <table className="w-table mx-auto table-auto text-center">
             <tbody>
               {applicants?.map((applicant, idx) => (
                 <>
@@ -74,4 +72,4 @@ const ApplicantsModel = (): ReactElement => {
   );
 };
 
-export default ApplicantsModel;
+export default ApplicantsModal;

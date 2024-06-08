@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { setAdvertisement } from "../../services/jobs/jobsSlice";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
+import { setAdvertisement } from "../../../services/jobs/jobsSlice";
 
 type TextAreaProps = {
   title: string;

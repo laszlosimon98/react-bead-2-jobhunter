@@ -1,17 +1,16 @@
 import { ReactElement } from "react";
-import ExperienceInput from "../../../components/ExperienceInput";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/reduxHooks";
 import { useCookies } from "react-cookie";
 import {
   useAddExperienceMutation,
   useModifyExperienceMutation,
 } from "../../../../services/experiences/experiencesApi";
-import Loading from "../../../components/Loading";
 import {
   creatingOff,
   setFormEmpty,
 } from "../../../../services/experiences/experiencesSlice";
 import { experienceModalOff } from "../../../../services/utils/visibilitySlice";
+import ExperienceInput from "./ExperienceInput";
 
 const JobseekerExperienceModal = (): ReactElement => {
   const dispatch = useAppDispatch();

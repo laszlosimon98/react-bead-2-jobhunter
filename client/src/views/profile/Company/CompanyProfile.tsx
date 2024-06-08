@@ -10,7 +10,7 @@ import { useCookies } from "react-cookie";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import { setEmpty } from "../../../services/jobs/jobsSlice";
 import Loading from "../../components/Loading";
-import ApplicantsModel from "./components/ApplicantsModel";
+import ApplicantsModal from "./components/ApplicantsModal";
 import { applicantsModalOn } from "../../../services/utils/visibilitySlice";
 
 const CompanyProfile = (): ReactElement => {
@@ -20,7 +20,7 @@ const CompanyProfile = (): ReactElement => {
   const token = cookies?.access_token?.token;
   const userId = cookies?.access_token?.userId;
 
-  const isApplicantsModelOpen = useAppSelector(
+  const isApplicantsModalOpen = useAppSelector(
     (state) => state.visibility.isApplicantsModalOpen
   );
 
@@ -100,7 +100,7 @@ const CompanyProfile = (): ReactElement => {
             </div>
           ))}
         </div>
-        {isApplicantsModelOpen && <ApplicantsModel />}
+        {isApplicantsModalOpen && <ApplicantsModal />}
       </div>
     </>
   );

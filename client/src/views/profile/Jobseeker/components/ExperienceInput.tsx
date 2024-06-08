@@ -1,6 +1,6 @@
 import { ChangeEvent, ReactElement } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { updateValue } from "../../services/experiences/experiencesSlice";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/reduxHooks";
+import { updateValue } from "../../../../services/experiences/experiencesSlice";
 
 type ExperienceInputProps = {
   title: string;
@@ -13,7 +13,7 @@ const ExperienceInput = ({
 }: ExperienceInputProps): ReactElement => {
   const dispatch = useAppDispatch();
 
-  const value = useAppSelector((state) => state.experiences.value);
+  const experience = useAppSelector((state) => state.experiences.value);
 
   return (
     <div className="flex flex-row gap-3">
@@ -24,7 +24,7 @@ const ExperienceInput = ({
         name={_for}
         id={_for}
         type="text"
-        value={value[_for]}
+        value={experience[_for]}
         onInput={(e: ChangeEvent<HTMLInputElement>) =>
           dispatch(updateValue({ name: e.target.name, value: e.target.value }))
         }

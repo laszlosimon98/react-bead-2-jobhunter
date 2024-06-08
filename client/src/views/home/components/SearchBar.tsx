@@ -1,16 +1,16 @@
 import { ChangeEvent, ReactElement } from "react";
-import FilterDropdown from "../home/components/FilterDropdown";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import {
-  filterClose,
-  filterToggle,
-} from "../../services/utils/visibilitySlice";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import {
   setFilter,
   setSearch,
   setFiltered,
   removeFilter,
-} from "../../services/jobs/jobsSlice";
+} from "../../../services/jobs/jobsSlice";
+import {
+  filterClose,
+  filterToggle,
+} from "../../../services/utils/visibilitySlice";
+import FilterDropdown from "./FilterDropdown";
 
 type SearchBarType = {
   title: string;
@@ -36,16 +36,18 @@ const SearchBar = ({ title }: SearchBarType): ReactElement => {
           value={company}
           onInput={(e: ChangeEvent<HTMLInputElement>) => {
             {
-              dispatch(setFilter({ name: "company", value: e.target.value }));
-              if (!e.target.value) {
-                dispatch(setSearch());
-              }
+              dispatch(
+                setFilter({
+                  name: "company",
+                  value: e.target.value,
+                })
+              );
+              dispatch(setSearch({ name: "company", value: e.target.value }));
             }
           }}
         />
         <button
           onClick={() => {
-            dispatch(setSearch());
             dispatch(filterClose());
             dispatch(setFiltered());
           }}

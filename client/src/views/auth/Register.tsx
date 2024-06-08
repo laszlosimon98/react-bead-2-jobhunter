@@ -1,20 +1,20 @@
-import { ChangeEvent, ReactElement } from "react";
-import RegisterInput from "../components/RegisterInput";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { ReactElement, ChangeEvent } from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "../../hooks/reduxHooks";
+import { useAddExperiencesMutation } from "../../services/experiences/experiencesApi";
 import {
-  setError,
+  useRegisterUserMutation,
+  useLoginUserMutation,
+} from "../../services/users/usersApi";
+import {
   setFormEmpty,
+  setError,
   setRegisterForm,
 } from "../../services/users/usersSlice";
-import {
-  useLoginUserMutation,
-  useRegisterUserMutation,
-} from "../../services/users/usersApi";
-import { useNavigate } from "react-router-dom";
-import { useAddExperiencesMutation } from "../../services/experiences/experiencesApi";
+import { ParamExperienceType } from "../../types/experiencesType";
 import { saveCookie } from "../../utils/util";
-import { useCookies } from "react-cookie";
-import type { ParamExperienceType } from "../../types/experiencesType";
+import RegisterInput from "./components/RegisterInput";
 
 const Register = (): ReactElement => {
   const data = useAppSelector((state) => state.users.data.register);
