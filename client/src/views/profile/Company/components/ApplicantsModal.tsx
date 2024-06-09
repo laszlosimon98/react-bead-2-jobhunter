@@ -53,16 +53,12 @@ const ApplicantsModal = (): ReactElement => {
           <table className="w-table mx-auto table-auto text-center">
             <tbody>
               {applicants?.map((applicant, idx) => (
-                <>
-                  <tr key={idx} className="bg-sky-50">
-                    <td className="pl-8 py-6 font-semibold opacity-80">Név</td>
-                    <td className="pl-8 py-6">{applicant.user.fullname}</td>
-                    <td className="pl-8 py-6 font-semibold opacity-80">
-                      E-mail
-                    </td>
-                    <td className="pl-8 py-6">{applicant.user.email}</td>
-                  </tr>
-                </>
+                <tr key={idx} className="bg-sky-50">
+                  <td className="pl-8 py-6 font-semibold opacity-80">Név</td>
+                  <td className="pl-8 py-6">{applicant.user.fullname}</td>
+                  <td className="pl-8 py-6 font-semibold opacity-80">E-mail</td>
+                  <td className="pl-8 py-6">{applicant.user.email}</td>
+                </tr>
               ))}
             </tbody>
           </table>

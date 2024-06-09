@@ -1,19 +1,24 @@
 import { ReactElement } from "react";
 import { useCookies } from "react-cookie";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   useApplyJobMutation,
   useGetJobsForAnApplicantQuery,
   useRemoveApplicationMutation,
 } from "../../../services/applicants/applicantsApi";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
+import { jobModalOff } from "../../../services/utils/visibilitySlice";
 
 const AppliedJobs = (): ReactElement => {
   const [cookies] = useCookies(["access_token"]);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { jobId } = useParams();
 
   const token = cookies?.access_token?.token;
   const userId = cookies?.access_token?.userId;
 
-  const { jobId } = useParams();
+  const dispatch = useAppDispatch();
 
   const { data: appliedJobs } = useGetJobsForAnApplicantQuery({
     token,
@@ -35,6 +40,11 @@ const AppliedJobs = (): ReactElement => {
   };
 
   const handleRemoveApplication = () => {
+    if (location.pathname.includes("profile")) {
+      navigate("/profile");
+      dispatch(jobModalOff());
+    }
+
     const id = parseInt(jobId as string);
     removeApplication({ token, jobId: id });
   };
