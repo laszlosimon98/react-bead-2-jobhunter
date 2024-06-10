@@ -31,8 +31,14 @@ const DropdownMenu = (): ReactElement => {
       >
         {isDropdownVisible && (
           <ul className="flex flex-col justify-end items-center gap-2">
-            {user === null && <LoggedOutMenu />}
-            {user?.role === "jobseeker" ? <JobSeekerMenu /> : <CompanyMenu />}
+            {!token && !userId ? (
+              <LoggedOutMenu />
+            ) : (
+              <>
+                {user?.role === "jobseeker" && <JobSeekerMenu />}
+                {user?.role === "company" && <CompanyMenu />}
+              </>
+            )}
           </ul>
         )}
       </div>

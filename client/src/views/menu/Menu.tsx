@@ -38,7 +38,7 @@ const Menu = (): ReactElement => {
       </h1>
 
       <div
-        className="h-7 flex items-center cursor-pointer md:hidden relative"
+        className="h-7 flex items-center cursor-pointer md:hidden relative z-50"
         onClick={() => dispatch(dropDownToggle())}
       >
         <DropdownMenu />
