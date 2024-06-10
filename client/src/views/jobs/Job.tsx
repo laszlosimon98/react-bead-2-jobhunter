@@ -31,9 +31,10 @@ const Job = ({ job }: JobTableProps): ReactElement => {
         >
           {job.homeOffice ? <HomeOffice /> : ""}
 
-          <div className="flex flex-col justify-end items-end mr-2 w-[10rem]">
+          <div className="flex flex-col justify-end items-end mr-2 w-[12rem]">
             <p className="font-semibold">
-              {formatNumber(job.salaryFrom)}-{formatNumber(job.salaryTo)} Ft
+              {formatNumber(job.salaryFrom)} Ft - {formatNumber(job.salaryTo)}{" "}
+              Ft
             </p>
             <p className="text-sm opacity-70 self-center sm:self-end">
               {translateType(job.type)}

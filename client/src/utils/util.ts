@@ -31,8 +31,14 @@ export const formatNumber = (num: number): string => {
     result += reversed.slice(i * 3, i * 3 + 3).concat(".");
   }
   result += reversed.slice(loop * 3, loop * 3 + 3);
+  result = reverseString(result).replace(/^\./, "");
 
-  return reverseString(result).replace(/^\./, "");
+  if (result.length > 7) {
+    const dotIndex = result.indexOf(".");
+    result = result.slice(0, dotIndex + 2).concat("M");
+  }
+
+  return result;
 };
 
 export const saveCookie = (response: ResponseType, setCookie: any) => {

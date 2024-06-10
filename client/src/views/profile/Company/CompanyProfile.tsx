@@ -68,8 +68,8 @@ const CompanyProfile = (): ReactElement => {
                   <p>{translateType(job.type as string)}</p>
                   <p>{job.homeOffice ? "Home Office" : job.city}</p>
                   <p>
-                    {formatNumber(job.salaryFrom as number)} -{" "}
-                    {formatNumber(job.salaryTo as number)}{" "}
+                    {formatNumber(job.salaryFrom as number)} Ft -
+                    {formatNumber(job.salaryTo as number)} Ft
                   </p>
                 </div>
               </div>
