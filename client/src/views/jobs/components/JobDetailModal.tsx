@@ -90,7 +90,7 @@ const JobDetailModal = (): ReactElement => {
                   {user && user.role === "jobseeker" && <AppliedJobs />}
                 </div>
 
-                <JobTable job={job} />
+                {job && <JobTable job={job} />}
               </div>
             </>
           )}
